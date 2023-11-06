@@ -46,6 +46,7 @@ export const Board: FC = () => {
     <div className={styles.wrapper}>
       <UserList users={userlist}/>
       <section className={styles.board}>
+
         <ul className={styles.top}>
           <BoardCell variant={CellVariant.CORNER} item={{} as TBoardCell}/>
           {top.map(item => <BoardCell variant={CellVariant.TOP} item={item as TBoardCell}/>)}
