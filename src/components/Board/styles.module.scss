@@ -1,12 +1,5 @@
 @import "src/assets/styles/templates.scss";
 
-//
-.wrapper{
-  display: flex;
-  gap: 157px;
-  align-items: center;
-  padding: 0 70px;
-}
 .board {
   @include flex-col-gap(1px);
   justify-content: center;

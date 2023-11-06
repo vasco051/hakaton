@@ -1,18 +1,24 @@
-import styles from './styles.module.scss'
 import {FC} from "react";
 
-import {UserItem, UserItemProps} from "./UserItem";
+import { UserItem } from './UserItem';
+
+import { TUser } from 'models/TUser';
+
+import styles from './styles.module.scss';
 
 export interface UserProps {
-  users:UserItemProps[]
+  users: TUser[];
 }
 export const UserList:FC<UserProps> = (users)=>{
-
-
   return(
-  <div className={styles.wrapper}>
-    {users.users.map(user=><UserItem balance={user.balance} color={user.color} id={user.id} is_active={user.is_active} is_sleep={user.is_sleep} is_walk={user.is_walk} username={user.username}/>)}
-  </div>
+    <div className={styles.wrapper}>
+      {users.users.map(user => (
+        <UserItem
+          user={user}
+          key={user.id}
+        />
+      ))}
+    </div>
 
   )
 }

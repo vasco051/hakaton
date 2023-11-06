@@ -1,17 +1,17 @@
-import styles from './styles.module.scss'
-import {FC} from "react";
-import {clsx} from "clsx";
-import IcDead from 'assets/images/user/dead.svg'
+import { FC } from 'react';
+import { clsx } from 'clsx';
+
+import { TUser } from 'models/TUser';
+
+import IcDead from 'assets/images/user/dead.svg';
+import styles from './styles.module.scss';
+
+
 export interface UserItemProps {
-  username: string,
-  id:number,
-  balance: number,
-  color:string,
-  is_sleep:boolean,
-  is_active:boolean,
-  is_walk:boolean
+  user: TUser;
 }
-export const UserItem:FC<UserItemProps> = (user)=>{
+
+export const UserItem: FC<UserItemProps> = ({ user }) => {
 
   const userStyles = clsx(styles.wrapper, {
     [styles.disabled]: !user.is_active,
@@ -20,15 +20,15 @@ export const UserItem:FC<UserItemProps> = (user)=>{
   const color = {
 
     backgroundColor: user.color
-  }
-  return(
+  };
+  return (
     <div className={userStyles}>
-        <div style={color} className={styles.avatar}>
-          {user.username[0].toUpperCase()}
-        </div>
+      <div style={color} className={styles.avatar}>
+        {user.username[0].toUpperCase()}
+      </div>
 
-          <p className={styles.name}>{user.username}</p>
-          {user.is_active ? <p className={styles.price}>{user.balance}  ₽</p> : <img src={IcDead} alt=""/>}
+      <p className={styles.name}>{user.username}</p>
+      {user.is_active ? <p className={styles.price}>{user.balance} ₽</p> : <img src={IcDead} alt=""/>}
 
     </div>
   )
