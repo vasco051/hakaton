@@ -26,7 +26,7 @@ const BoardCell: FC<IBoardCellProps> = ({
   if (variant === CellVariant.CORNER) {
     return (
       <li className={styles.corner}>
-
+        <img src={`http://127.0.0.1:8000${item.image}`} alt="" className={styles.image}/>
       </li>
     );
   }
@@ -39,7 +39,7 @@ const BoardCell: FC<IBoardCellProps> = ({
         </div>
       )}
       <div className={styles.imageWrapper}>
-        <img src={item.image} alt="" className={styles.image}/>
+        <img src={`http://127.0.0.1:8000${item.image}`} alt="" className={styles.image}/>
       </div>
     </li>
   );
