@@ -2,7 +2,6 @@ import { FC } from 'react';
 
 import { CellVariant } from './types';
 
-import styles from './styles.module.scss';
 
 interface IBoardCellProps {
   variant: CellVariant,
@@ -13,11 +12,48 @@ const BoardCell: FC<IBoardCellProps> = ({
   variant,
   item
 }) => {
-  return (
-    <li className={styles.cell}>
 
-    </li>
-  );
+  if (variant === CellVariant.TOP) {
+    return (
+      <li>
+
+      </li>
+    );
+  }
+
+  if (variant === CellVariant.RIGHT) {
+    return (
+      <li>
+
+      </li>
+    );
+  }
+
+  if (variant === CellVariant.BOTTOM) {
+    return (
+      <li>
+
+      </li>
+    );
+  }
+
+  if (variant === CellVariant.LEFT) {
+    return (
+      <li>
+
+      </li>
+    );
+  }
+
+  if (variant === CellVariant.CORNER) {
+    return (
+      <li>
+
+      </li>
+    )
+  }
+
+  return null
 };
 
 export default BoardCell;

@@ -1,0 +1,31 @@
+.board {
+  display: flex;
+  flex-direction: column;
+}
+
+.top {
+  background: red;
+}
+
+.center {
+  display: flex;
+
+  .left {
+    background: yellow;
+    min-width: 50px;
+  }
+
+  .centerSlot {
+    width: 100%;
+  }
+
+  .right {
+    min-width: 50px;
+    height: 100px;
+    background: orange;
+  }
+}
+
+.bottom {
+  background: green;
+}
