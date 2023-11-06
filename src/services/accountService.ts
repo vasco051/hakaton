@@ -1,19 +1,19 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
-import { TRegisterInfo } from 'models/TUser';
+import { TRegisterInfo, TRegisterResponse } from 'models/TUser';
 
 export const accountAPI = createApi({
   reducerPath: 'accountAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api' }),
   endpoints: build => ({
-    registration: build.mutation<string, TRegisterInfo>({
+    registration: build.mutation<TRegisterResponse, TRegisterInfo>({
       query: (data: TRegisterInfo) => ({
         url: '/users/register/',
         method: 'post',
         body: data
       })
     }),
-    authorization: build.mutation<string, TRegisterInfo>({
+    authorization: build.mutation<TRegisterResponse, TRegisterInfo>({
       query: (data: TRegisterInfo) => ({
         url: '/users/login/',
         method: 'post',
