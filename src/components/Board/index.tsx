@@ -2,10 +2,10 @@ import { FC } from 'react';
 
 import { BoardCell, CellVariant } from 'components/BoardCell';
 
-import { TBoardCell } from 'models/TBoardCell';
+import {cardAPI} from "../../services/cardService.ts";
 
 import styles from './styles.module.scss';
-import {cardAPI} from "../../services/cardService.ts";
+
 
 
 export const Board: FC = () => {
@@ -14,9 +14,9 @@ export const Board: FC = () => {
     <section className={styles.board}>
 
       <ul className={styles.top}>
-        <BoardCell variant={CellVariant.CORNER} item={{} as TBoardCell}/>
+        {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[0]}/>}
         {cards &&cards.TOP.map(item => <BoardCell variant={CellVariant.TOP} item={item}/>)}
-        <BoardCell variant={CellVariant.CORNER} item={{} as TBoardCell}/>
+        {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[1]}/>}
       </ul>
 
       <section className={styles.center}>
@@ -32,9 +32,9 @@ export const Board: FC = () => {
       </section>
 
       <ul className={styles.bottom}>
-        <BoardCell variant={CellVariant.CORNER} item={{} as TBoardCell}/>
+        {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[2]}/>}
         {cards &&cards.BOTTOM.map(item => <BoardCell variant={CellVariant.BOTTOM} item={item }/>)}
-        <BoardCell variant={CellVariant.CORNER} item={{} as TBoardCell}/>
+        {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[3]}/>}
       </ul>
     </section>
   );
