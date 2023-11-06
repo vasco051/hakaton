@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Rooms from 'pages/Rooms';
+import Room from 'pages/Room';
 
 import { Authorization, Registration } from 'pages/Auth';
-import { Board } from 'components/Board';
 
 const AppRouter: FC = () => {
   return (
@@ -18,12 +18,12 @@ const AppRouter: FC = () => {
         element={<Registration/>}
       />
       <Route
-        path="/game"
-        element={<Board/>}
-      />
-      <Route
         path="/rooms"
         element={<Rooms/>}
+      />
+      <Route
+        path="/rooms/:id"
+        element={<Room/>}
       />
     </Routes>
   );

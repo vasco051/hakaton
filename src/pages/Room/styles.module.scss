@@ -1,0 +1,7 @@
+@import "src/assets/styles/templates";
+
+.room {
+  @include flex-row-gap(150px);
+
+  align-items: center;
+}
