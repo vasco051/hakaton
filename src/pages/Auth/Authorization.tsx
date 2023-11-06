@@ -1,15 +1,26 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch } from 'hooks/redux';
 
 import { accountAPI } from 'services/accountService';
-
 import { TRegisterInfo } from 'models/TUser';
+import { staticLinks } from 'routes/routingLinks';
+import { setUser } from 'store/reducers/account.slice';
 
 import styles from './styles.module.scss';
 
-
 const Authorization: FC = () => {
-  const [ authorization, { data: token } ] = accountAPI.useAuthorizationMutation();
+  const [
+    authorization, {
+      data,
+      error,
+      isLoading
+    }
+  ] = accountAPI.useAuthorizationMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -22,9 +33,11 @@ const Authorization: FC = () => {
     }
   });
 
-  useEffect(() => {
-    if (token) localStorage.setItem('auth_token', token.key);
-  }, [ token ]);
+  if (!isLoading && data) {
+    localStorage.setItem('auth_token', data.key);
+    dispatch(setUser(data.user));
+    navigate(staticLinks.rooms);
+  }
 
   return (
     <form onSubmit={formik.handleSubmit} className={styles.form}>
@@ -41,7 +54,6 @@ const Authorization: FC = () => {
         />
       </div>
 
-
       <div className={styles.block}>
         <span>Введите пароль</span>
 
@@ -53,7 +65,9 @@ const Authorization: FC = () => {
         />
       </div>
 
-      <button>Войти</button>
+      {error && <span>Произошла ошибка</span>}
+
+      <button type="submit">Войти</button>
     </form>
   );
 };

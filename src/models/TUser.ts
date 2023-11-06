@@ -5,6 +5,12 @@ export type TRegisterInfo = {
 
 export type TRegisterResponse = {
   key: string
+  user: TAccountInfo
+}
+
+export type TAccountInfo = {
+  id: number
+  username: string
 }
 
 export type TUser = {
