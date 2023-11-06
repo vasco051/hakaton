@@ -1,10 +1,8 @@
-import BoardCell from './components/BoardCell/BoardCell';
-import { CellVariant } from './components/BoardCell/types';
-
+import { Board } from 'components/Board';
 function App() {
   return (
     <div>
-      <BoardCell variant={CellVariant.LEFT} item={{}}/>
+      <Board/>
     </div>
   );
 }
