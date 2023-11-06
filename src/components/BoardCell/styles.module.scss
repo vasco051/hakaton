@@ -1,0 +1,88 @@
+@import "src/assets/styles/templates";
+
+.cell {
+
+  .coast {
+
+  }
+
+  .imageWrapper {
+
+  }
+
+  .image {
+
+  }
+}
+
+.corner {
+  width: 148px;
+  height: 148px;
+  background: yellow;
+}
+
+.top {
+  @include flex-col-gap(1px);
+
+  .coast {
+    height: 35px;
+    width: 84px;
+    background: orangered;
+  }
+
+  .imageWrapper {
+    background: orangered;
+    height: 148px;
+    width: 84px;
+  }
+}
+
+.right {
+  @include flex-row-gap(1px);
+  flex-direction: row-reverse;
+
+  .coast {
+    width: 35px;
+    height: 84px;
+    background: teal;
+  }
+
+  .imageWrapper {
+    background: orangered;
+    width: 148px;
+    height: 84px;
+  }
+}
+
+.bottom {
+  @include flex-col-gap(1px);
+  flex-direction: column-reverse;
+
+  .coast {
+    height: 35px;
+    width: 84px;
+    background: orangered;
+  }
+
+  .imageWrapper {
+    background: orangered;
+    height: 148px;
+    width: 84px;
+  }
+}
+
+.left {
+  @include flex-row-gap(1px);
+
+  .coast {
+    width: 35px;
+    height: 84px;
+    background: teal;
+  }
+
+  .imageWrapper {
+    background: orangered;
+    width: 148px;
+    height: 84px;
+  }
+}

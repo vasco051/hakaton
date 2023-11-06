@@ -1,31 +1,47 @@
+@import "src/assets/styles/templates.scss";
+
+//
 .board {
-  display: flex;
-  flex-direction: column;
+  @include flex-col-gap(1px);
+  justify-content: center;
+  align-items: center;
+}
+
+.top, .bottom {
+  @include flex-row-gap(1px);
+  justify-content: center;
+}
+
+.center {
+  @include flex-row-gap(1px);
+
+  .left, .right {
+    @include flex-col-gap(1px);
+  }
 }
 
 .top {
-  background: red;
+  align-items: flex-end;
 }
 
 .center {
   display: flex;
 
   .left {
-    background: yellow;
-    min-width: 50px;
+    align-items: flex-end;
   }
 
   .centerSlot {
-    width: 100%;
+    width: 764px;
+    height: 764px;
+    background: #150050;
   }
 
   .right {
-    min-width: 50px;
-    height: 100px;
-    background: orange;
+    align-items: flex-start;
   }
 }
 
 .bottom {
-  background: green;
+  align-items: flex-start;
 }
