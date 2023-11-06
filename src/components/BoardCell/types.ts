@@ -2,5 +2,6 @@ export enum CellVariant {
   LEFT = 'LEFT',
   RIGHT = 'RIGHT',
   TOP = 'TOP',
-  BOTTOM = 'BOTTOM'
+  BOTTOM = 'BOTTOM',
+  CORNER = 'CORNER'
 }
