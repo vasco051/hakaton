@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Board } from '../components/Board';
-import Authorization from '../pages/Authorizaion/Authorization';
-import Registration from '../pages/Registation/Registration';
 
+import Rooms from 'pages/Rooms';
+
+import { Authorization, Registration } from 'pages/Auth';
+import { Board } from 'components/Board';
 
 const AppRouter: FC = () => {
   return (
@@ -19,6 +20,10 @@ const AppRouter: FC = () => {
       <Route
         path="/game"
         element={<Board/>}
+      />
+      <Route
+        path="/rooms"
+        element={<Rooms/>}
       />
     </Routes>
   );

@@ -1,22 +1,22 @@
 import { FC } from 'react';
 
 import { BoardCell, CellVariant } from 'components/BoardCell';
+import { UserList } from 'components/UserList';
 
 import { TBoardCell } from 'models/TBoardCell';
 
 import styles from './styles.module.scss';
-import {UserList} from "../UserList";
 
 
 export const Board: FC = () => {
-  const top = [ {}, {}, {}, {}, {coast: 123}, {}, {}, {coast: ' '}, {} ];
-  const right = [ {}, {}, {}, {}, {coast: 123}, {}, {}, {}, {} ];
-  const bottom = [ {coast: ' '}, {}, {}, {}, {coast: 123}, {coast: ' '}, {}, {}, {} ];
-  const left = [ {}, {coast: ' '}, {}, {}, {coast: 123}, {}, {}, {}, {} ];
-  const userlist=[
+  const top = [ {}, {}, {}, {}, { coast: 123 }, {}, {}, { coast: ' ' }, {} ];
+  const right = [ {}, {}, {}, {}, { coast: 123 }, {}, {}, {}, {} ];
+  const bottom = [ { coast: ' ' }, {}, {}, {}, { coast: 123 }, { coast: ' ' }, {}, {}, {} ];
+  const left = [ {}, { coast: ' ' }, {}, {}, { coast: 123 }, {}, {}, {}, {} ];
+  const userlist = [
     {
       username: 'maxim',
-      id:1,
+      id: 1,
       balance: 16000,
       color:'red',
       is_sleep:false,
