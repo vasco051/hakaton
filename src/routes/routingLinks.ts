@@ -1,5 +1,7 @@
 export const staticLinks = {
+  //public
   notFound: '*',
+  main: '/glavnaya',
 
   // unauthorized
   registration: '/registraciya',

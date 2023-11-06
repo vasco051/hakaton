@@ -1,0 +1,38 @@
+.header{
+  display: flex;
+  max-width: 1320px;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 20px 0;
+  align-items: center;
+  background: transparent;
+  position: sticky;
+  top: 0 ;
+  left: 0;
+}
+.logoWrapper{
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+.logo{
+  width: 46px;
+  height: 61.717px;
+}
+.logoText{
+  color: #FFF;
+  font-family: Inter;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.link{
+  color: #FFF;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  cursor: pointer;
+}
