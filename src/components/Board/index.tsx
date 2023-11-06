@@ -1,21 +1,24 @@
 import { FC } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { BoardCell, CellVariant } from 'components/BoardCell';
 
-import {cardAPI} from "../../services/cardService.ts";
+import { cardAPI } from 'services/cardService.ts';
 
 import styles from './styles.module.scss';
 
 
 
 export const Board: FC = () => {
-  const {data: cards} = cardAPI.useFetchAllCardsQuery()
+  const { id } = useParams();
+  const { data: cards } = cardAPI.useFetchAllCardsQuery(parseInt(id!));
+
   return (
     <section className={styles.board}>
 
       <ul className={styles.top}>
         {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[0]}/>}
-        {cards &&cards.TOP.map(item => <BoardCell variant={CellVariant.TOP} item={item}/>)}
+        {cards && cards.TOP.map(item => <BoardCell variant={CellVariant.TOP} item={item}/>)}
         {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[1]}/>}
       </ul>
 
@@ -33,7 +36,7 @@ export const Board: FC = () => {
 
       <ul className={styles.bottom}>
         {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[2]}/>}
-        {cards &&cards.BOTTOM.map(item => <BoardCell variant={CellVariant.BOTTOM} item={item }/>)}
+        {cards && cards.BOTTOM.map(item => <BoardCell variant={CellVariant.BOTTOM} item={item }/>)}
         {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[3]}/>}
       </ul>
     </section>

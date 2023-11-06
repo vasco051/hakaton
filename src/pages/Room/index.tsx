@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Board } from 'components/Board';
 import { UserList } from 'components/UserList';
 
+import { WebSocketClient } from 'store/websocketClient';
 import { userAPI } from 'services/userService';
 
 import styles from './styles.module.scss';
