@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import { useFormik } from 'formik';
 
-import { accountAPI } from 'services/AccountService';
+import { accountAPI } from 'services/accountService';
 
 import { TRegisterInfo } from 'models/TUser';
 
