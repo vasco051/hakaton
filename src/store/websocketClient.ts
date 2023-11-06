@@ -1,4 +1,4 @@
-class WebSocketClient {
+export class WebSocketClient {
   url: string;
   socket: WebSocket | null;
 

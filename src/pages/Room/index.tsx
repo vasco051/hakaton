@@ -5,25 +5,36 @@ import { Board } from 'components/Board';
 import { UserList } from 'components/UserList';
 
 import { userAPI } from 'services/userService';
+import { WebSocketClient } from '../../store/websocketClient';
 
 import styles from './styles.module.scss';
 
 
 const Room: FC = () => {
-    const { id } = useParams();
 
-    const { data: users = [] } = userAPI.useFetchAllUsersQuery(parseInt(id!));
+  const { id } = useParams();
 
-    useEffect(() => {
-    }, []);
+  const { data: users = [] } = userAPI.useFetchAllUsersQuery(parseInt(id!));
 
-    return (
-      <section className={styles.room}>
-        <UserList users={users}/>
-        <Board/>
-      </section>
-    );
-  }
-;
+  useEffect(() => {
+    const socket = new WebSocketClient(`ws://127.0.0.1:8000/ws/room/${id}/`);
+
+    socket.connect();
+
+    setTimeout(() => {
+      socket.send(JSON.stringify({
+        type: 'send_color',
+        color: 'dsf'
+      }));
+    }, 500);
+  }, []);
+
+  return (
+    <section className={styles.room}>
+      <UserList users={users}/>
+      <Board/>
+    </section>
+  );
+};
 
 export default Room;
