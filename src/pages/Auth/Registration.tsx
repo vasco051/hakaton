@@ -22,7 +22,7 @@ const Registration: FC = () => {
   });
 
   useEffect(() => {
-    if (token) localStorage.setItem('auth_token', token);
+    if (token) localStorage.setItem('auth_token', token.key);
   }, [ token ]);
 
   return (

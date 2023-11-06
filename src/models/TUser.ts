@@ -3,6 +3,10 @@ export type TRegisterInfo = {
   password: string;
 }
 
+export type TRegisterResponse = {
+  key: string
+}
+
 export type TUser = {
   username: string,
   id: number,
