@@ -1,0 +1,138 @@
+@import 'assets/styles/templates';
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  box-sizing: border-box;
+  padding: 8px 16px;
+
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+
+  font-size: 16px;
+  font-weight: 500;
+
+  transition: all 0.15s ease-in-out;
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.outlined {
+  border: 1px solid var(--c_blue);
+  background-color: transparent;
+  color: var(--c_blue);
+
+  &:hover {
+    background-color: var(--c_blue);
+    color: var(--c_white-text);
+  }
+
+  &:disabled {
+    color: var(--c_grey);
+    border: 1px solid var(--c_grey);
+    background-color: transparent;
+  }
+}
+
+.filled {
+  border: 1px solid #A066BF;
+  background-color: #150050;;
+  color: var(--c_white-text);
+
+  &:hover {
+    background-color: transparent;
+    color: var(--c_blue);
+  }
+
+  &:disabled {
+    border: 1px solid var(--c_grey);
+    background-color: var(--c_grey);
+  }
+}
+
+.grey {
+  border: 1px solid var(--c_grey);
+  background-color: transparent;
+  color: var(--c_grey);
+
+  &:hover {
+    border: 1px solid var(--c_blue);
+    background-color: var(--c_blue);
+    color: var(--c_white-text);
+  }
+}
+
+.light {
+  border-radius: 5px;
+  background-color: var(--c_light);
+  color: var(--c_dark);
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
+.dark {
+  border: 1px solid var(--c_dark);
+  border-radius: 5px;
+  background-color: transparent;
+  color: var(--c_dark);
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
+.danger {
+  @extend .outlined;
+
+  border-color: var(--c_red);
+  color: var(--c_red);
+
+  &:hover {
+    background-color: var(--c_red);
+    color: var(--c_white-text);
+  }
+}
+
+.borderless {
+  border-radius: 5px;
+  background: var(--c_blue-uncative);
+  color: var(--c_blue);
+  padding: 14px 40px;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.defaultSize {
+  padding: 13px 31px;
+  line-height: 20px;
+}
+
+.small {
+  padding: 8px 16px;
+  font-weight: 500;
+  border-width: 1px;
+}
