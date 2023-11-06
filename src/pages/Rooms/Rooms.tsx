@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 import { roomAPI } from 'services/roomService';
 import { staticLinks } from 'routes/routingLinks';
+import Button from '../../components/Buttons/Button';
 
 import styles from './styles.module.scss';
 
@@ -21,9 +22,9 @@ const Rooms: FC = () => {
 
   return (
     <div className={styles.rooms}>
-      <div>
-        <span>Ожидают</span>
-        <Link to={staticLinks.roomCreate}>Создать игру</Link>
+      <div className={styles.header}>
+        <h2>Ожидают игры</h2>
+        <Link to={staticLinks.roomCreate}><Button>Создать игру</Button></Link>
       </div>
 
       <ul className={styles.list}>
@@ -32,7 +33,7 @@ const Rooms: FC = () => {
             <span className={styles.title}>{room.title}</span>
             <div className={styles.right}>
               <span>{room.count_players_now} / {room.count_players}</span>
-              <button onClick={() => joinToRome(room.id)}>Присоединиться</button>
+              <Button onClick={() => joinToRome(room.id)}>Присоединиться</Button>
             </div>
           </li>
         ))}

@@ -1,0 +1,42 @@
+@import 'src/assets/styles/templates';
+
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  box-sizing: border-box;
+  padding: 12px 50px;
+
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+
+  color: #FFF;
+
+  font-size: 30px;
+  font-weight: 500;
+
+  transition: all 0.15s ease-in-out;
+
+  &:active {
+    opacity: 0.7;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+.filled {
+  border: 1px solid #A066BF;
+  background-color: #150050;;
+  color: #fff;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
