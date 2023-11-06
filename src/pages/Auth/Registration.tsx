@@ -1,14 +1,27 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useFormik } from 'formik';
+import { useNavigate } from 'react-router-dom';
+
+import { useAppDispatch } from 'hooks/redux';
 
 import { accountAPI } from 'services/accountService';
+import { setUser } from 'store/reducers/account.slice';
 
 import { TRegisterInfo } from 'models/TUser';
+import { staticLinks } from 'routes/routingLinks';
 
 import styles from './styles.module.scss';
 
 const Registration: FC = () => {
-  const [ registration, { data: token } ] = accountAPI.useRegistrationMutation();
+  const [
+    registration, {
+      data,
+      error,
+      isLoading
+    }
+  ] = accountAPI.useRegistrationMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const formik = useFormik({
     initialValues: {
@@ -21,9 +34,11 @@ const Registration: FC = () => {
     }
   });
 
-  useEffect(() => {
-    if (token) localStorage.setItem('auth_token', token.key);
-  }, [ token ]);
+  if (!isLoading && data) {
+    localStorage.setItem('auth_token', data.key);
+    dispatch(setUser(data.user));
+    navigate(staticLinks.rooms);
+  }
 
   return (
     <form onSubmit={formik.handleSubmit} className={styles.form}>
@@ -51,6 +66,8 @@ const Registration: FC = () => {
           onChange={formik.handleChange}
         />
       </div>
+
+      {error && <span>Произошла ошибка</span>}
 
       <button>Регистрация</button>
     </form>

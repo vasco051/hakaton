@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 
-import { TRegisterInfo, TRegisterResponse } from 'models/TUser';
+import { TAccountInfo, TRegisterInfo, TRegisterResponse } from 'models/TUser';
 
 export const accountAPI = createApi({
   reducerPath: 'accountAPI',
@@ -18,6 +18,12 @@ export const accountAPI = createApi({
         url: '/users/login/',
         method: 'post',
         body: data
+      })
+    }),
+    login: build.query<TAccountInfo, void>({
+      query: () => ({
+        url: '/users/me',
+        headers: { Authorization: `Token ${localStorage.getItem('auth_token')}` }
       })
     })
   })

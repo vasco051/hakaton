@@ -1,30 +1,27 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
-import Rooms from 'pages/Rooms';
-import Room from 'pages/Room';
+import { useAppSelector } from 'hooks/redux';
 
-import { Authorization, Registration } from 'pages/Auth';
+import { authorizedRoutes, publicRoutes, unauthorizedRoutes } from './routesConfig';
 
 const AppRouter: FC = () => {
+  const { user } = useAppSelector(state => state.accountReducer);
+
+  const routes = [ ...publicRoutes ];
+
+  if (user) {
+    routes.push(...authorizedRoutes);
+  }
+  else {
+    routes.push(...unauthorizedRoutes);
+  }
+
   return (
     <Routes>
-      <Route
-        path="/login"
-        element={<Authorization/>}
-      />
-      <Route
-        path="/reg"
-        element={<Registration/>}
-      />
-      <Route
-        path="/rooms"
-        element={<Rooms/>}
-      />
-      <Route
-        path="/rooms/:id"
-        element={<Room/>}
-      />
+      {routes.map(route => (
+        <Route path={route.path} element={route.element} key={route.path}/>
+      ))}
     </Routes>
   );
 };
