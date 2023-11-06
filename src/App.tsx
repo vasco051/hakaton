@@ -2,7 +2,8 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import AppRouter from 'routes/AppRouter';
-import Header from 'components/Layout/Header.tsx';
+import { Footer } from 'components/Layout/Footer';
+import { Header } from 'components/Layout/Header';
 
 import { accountAPI } from 'services/accountService';
 import { staticLinks } from 'routes/routingLinks.ts';

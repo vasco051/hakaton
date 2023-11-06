@@ -3,7 +3,7 @@
 .createRoom {
   @include flex-col-gap(45px);
   max-width: 1320px;
-  margin: 100px auto;
+  margin: 200px auto;
 
   h1 {
     font-size: 50px;
@@ -70,7 +70,7 @@
 
 .rooms {
   max-width: 1320px;
-  margin: 100px auto;
+  margin: 200px auto;
 
   .list {
     @include flex-col-gap(20px);

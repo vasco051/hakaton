@@ -1,6 +1,10 @@
 @import "normolize";
 
-:root{
-  background: #610094;
+:root {
+  background: linear-gradient(116deg, #150050 0%, #610094 80.45%);
   color: #fff;
+}
+
+.wrapper {
+  min-height: calc(100vh - 161.7px - 101.7px);
 }

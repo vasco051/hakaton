@@ -6,7 +6,6 @@ import { staticLinks } from 'routes/routingLinks';
 
 import styles from './styles.module.scss';
 
-
 const Rooms: FC = () => {
   const {
     data: rooms = [],
