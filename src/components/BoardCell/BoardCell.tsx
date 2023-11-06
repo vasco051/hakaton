@@ -33,9 +33,9 @@ const BoardCell: FC<IBoardCellProps> = ({
 
   return (
     <li className={cellClasses}>
-      {item.coast && (
+      {item.cost && (
         <div className={styles.coast}>
-          <span>{item.coast}k</span>
+          <span>{item.cost} ₽</span>
         </div>
       )}
       <div className={styles.imageWrapper}>

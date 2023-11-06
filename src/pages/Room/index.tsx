@@ -8,7 +8,6 @@ import { userAPI } from 'services/userService';
 
 import styles from './styles.module.scss';
 
-
 const Room: FC = () => {
     const { id } = useParams();
 
@@ -20,7 +19,7 @@ const Room: FC = () => {
     return (
       <section className={styles.room}>
         <UserList users={users}/>
-        <Board/>
+        <Board />
       </section>
     );
   }
