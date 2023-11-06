@@ -10,9 +10,9 @@ import { userAPI } from 'services/userService';
 import styles from './styles.module.scss';
 
 const Room: FC = () => {
-    const { id } = useParams();
+  const { id } = useParams();
 
-    const { data: users = [] } = userAPI.useFetchAllUsersQuery(parseInt(id!));
+  const { data: users = [] } = userAPI.useFetchAllUsersQuery(parseInt(id!));
 
   useEffect(() => {
     const socket = new WebSocketClient(`ws://127.0.0.1:8000/ws/room/${id}/`);

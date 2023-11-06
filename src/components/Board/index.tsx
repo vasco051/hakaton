@@ -15,7 +15,6 @@ export const Board: FC = () => {
 
   return (
     <section className={styles.board}>
-
       <ul className={styles.top}>
         {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[0]}/>}
         {cards && cards.TOP.map(item => <BoardCell variant={CellVariant.TOP} item={item}/>)}

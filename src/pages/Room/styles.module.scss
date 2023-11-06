@@ -2,6 +2,8 @@
 
 .room {
   @include flex-row-gap(150px);
+  max-width: 1320px;
+  margin: 200px auto;
 
   align-items: center;
 }

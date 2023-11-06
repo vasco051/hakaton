@@ -4,11 +4,12 @@ export const staticLinks = {
   main: '/glavnaya',
 
   // unauthorized
-  registration: '/registraciya',
-  authorization: '/avtorizaciya',
+  registration: '/registration',
+  authorization: '/authorization',
 
   // authorized
   rooms: '/rooms',
+  roomCreate: '/room_create',
   room: '/rooms/:id'
 };
 
