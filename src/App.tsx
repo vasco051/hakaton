@@ -8,6 +8,7 @@ function App() {
   return (
     <div>
       <button onClick={()=>setIsopen(prevState => !prevState)}>123123</button>
+
       <Board/>
       {isopen && <Dice userId={1}></Dice>}
       
