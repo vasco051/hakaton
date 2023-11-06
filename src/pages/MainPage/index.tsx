@@ -6,7 +6,7 @@ const MainPage: FC = () => {
 
 
     return (
-        <>
+        <main className={styles.wrapper}>
             <div className={styles.introWrapper}>
                 <section className={styles.intro}>
                     <div className={styles.text}>
@@ -39,7 +39,7 @@ const MainPage: FC = () => {
                 </section>
             </div>
 
-        </>
+        </main>
     );
 };
 
