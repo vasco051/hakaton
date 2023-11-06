@@ -1,6 +1,7 @@
 import { Authorization, Registration } from 'pages/Auth';
 import Room from 'pages/Room';
 import Rooms from 'pages/Rooms';
+import CreateRoom from '../pages/Rooms/CreateRoom';
 
 import { staticLinks } from './routingLinks';
 
@@ -31,5 +32,9 @@ export const authorizedRoutes = [
   {
     path: staticLinks.room,
     element: <Room/>
+  },
+  {
+    path: staticLinks.roomCreate,
+    element: <CreateRoom/>
   }
 ];

@@ -2,11 +2,12 @@ export const staticLinks = {
   notFound: '*',
 
   // unauthorized
-  registration: '/registraciya',
-  authorization: '/avtorizaciya',
+  registration: '/registration',
+  authorization: '/authorization',
 
   // authorized
   rooms: '/rooms',
+  roomCreate: '/room_create',
   room: '/rooms/:id'
 };
 

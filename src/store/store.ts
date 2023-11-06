@@ -1,11 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import accountReducer from './reducers/account.slice';
-import diceReducer from './DiceSlice.ts';
+import diceReducer from './reducers/diceSlice';
 
 import { accountAPI } from 'services/accountService';
 import { userAPI } from 'services/userService';
 import { cardAPI } from 'services/cardService.ts';
+import { roomAPI } from 'services/roomService';
 
 
 const reducers = combineReducers({
@@ -13,7 +14,8 @@ const reducers = combineReducers({
   diceReducer,
   [accountAPI.reducerPath]: accountAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
-  [cardAPI.reducerPath]: cardAPI.reducer
+  [cardAPI.reducerPath]: cardAPI.reducer,
+  [roomAPI.reducerPath]: roomAPI.reducer
 });
 
 export const store = configureStore({
@@ -22,7 +24,8 @@ export const store = configureStore({
     getDefaultMiddleware().concat(
       accountAPI.middleware,
       userAPI.middleware,
-      cardAPI.middleware
+      cardAPI.middleware,
+      roomAPI.middleware
     )
 });
 
