@@ -49,15 +49,3 @@ class WebSocketClient {
     }
   }
 }
-
-// Пример использования класса WebSocketClient
-const wsUrl = 'ws://localhost:8000/ws/room/'; // Замените на URL вашего WebSocket-сервера
-const wsClient = new WebSocketClient(wsUrl);
-
-wsClient.connect();
-
-// Отправка сообщения
-wsClient.send('Привет, сервер!');
-
-// Закрытие соединения
-// wsClient.close();
