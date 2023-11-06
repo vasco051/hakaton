@@ -3,11 +3,15 @@
 .cell {
 
   .coast {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+    background: #fff;
   }
 
   .imageWrapper {
-
+    background: #fff;
   }
 
   .image {
@@ -16,9 +20,9 @@
 }
 
 .corner {
-  width: 148px;
-  height: 148px;
-  background: yellow;
+  width: 115px;
+  height: 115px;
+  background: #fff;
 }
 
 .top {
@@ -26,14 +30,12 @@
 
   .coast {
     height: 35px;
-    width: 84px;
-    background: orangered;
+    width: 65px;
   }
 
   .imageWrapper {
-    background: orangered;
-    height: 148px;
-    width: 84px;
+    height: 115px;
+    width: 65px;
   }
 }
 
@@ -43,14 +45,13 @@
 
   .coast {
     width: 35px;
-    height: 84px;
-    background: teal;
+    height: 65px;
+    writing-mode: vertical-rl;
   }
 
   .imageWrapper {
-    background: orangered;
-    width: 148px;
-    height: 84px;
+    width: 115px;
+    height: 65px;
   }
 }
 
@@ -60,14 +61,12 @@
 
   .coast {
     height: 35px;
-    width: 84px;
-    background: orangered;
+    width: 65px;
   }
 
   .imageWrapper {
-    background: orangered;
-    height: 148px;
-    width: 84px;
+    height: 115px;
+    width: 65px;
   }
 }
 
@@ -76,13 +75,12 @@
 
   .coast {
     width: 35px;
-    height: 84px;
-    background: teal;
+    height: 65px;
+    writing-mode: vertical-rl;
   }
 
   .imageWrapper {
-    background: orangered;
-    width: 148px;
-    height: 84px;
+    width: 115px;
+    height: 65px;
   }
 }

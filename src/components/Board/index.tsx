@@ -8,10 +8,10 @@ import styles from './styles.module.scss';
 
 
 export const Board: FC = () => {
-  const top = [ {}, {}, {}, {}, {coast: 123}, {}, {}, {}, {} ];
+  const top = [ {}, {}, {}, {}, {coast: 123}, {}, {}, {coast: ' '}, {} ];
   const right = [ {}, {}, {}, {}, {coast: 123}, {}, {}, {}, {} ];
-  const bottom = [ {}, {}, {}, {}, {coast: 123}, {}, {}, {}, {} ];
-  const left = [ {}, {}, {}, {}, {coast: 123}, {}, {}, {}, {} ];
+  const bottom = [ {coast: ' '}, {}, {}, {}, {coast: 123}, {coast: ' '}, {}, {}, {} ];
+  const left = [ {}, {coast: ' '}, {}, {}, {coast: 123}, {}, {}, {}, {} ];
 
   return (
     <section className={styles.board}>
