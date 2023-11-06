@@ -1,0 +1,112 @@
+@import "src/assets/styles/templates";
+
+.createRoom {
+  @include flex-col-gap(45px);
+  max-width: 1320px;
+  margin: 100px auto;
+
+  h1 {
+    font-size: 50px;
+    font-weight: 700;
+  }
+
+  input {
+    width: 630px;
+    height: 65px;
+
+    border: 1px solid #A066BF;
+    background: transparent;
+  }
+
+  button {
+    width: 361px;
+    height: 65px;
+
+    border: 1px solid #A066BF;
+    background: #150050;
+
+    color: #FFF;
+    font-size: 30px;
+    font-weight: 500;
+
+    cursor: pointer;
+  }
+
+  .block {
+    @include flex-col-gap(12px);
+
+    span {
+      font-size: 40px;
+      font-weight: 500;
+    }
+  }
+
+  .countPlayers {
+    @include flex-row-gap(20px);
+
+    .item button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 65px;
+      height: 65px;
+
+      color: #FFF;
+      font-size: 30px;
+      font-weight: 500;
+
+      border: 1px solid #A066BF;
+      background: #150050;
+      cursor: pointer;
+    }
+
+    .isActive button {
+      border: 1px solid #A066BF;
+      background: #610094;
+    }
+  }
+}
+
+.rooms {
+  max-width: 1320px;
+  margin: 100px auto;
+
+  .list {
+    @include flex-col-gap(20px);
+  }
+
+  .item {
+    @include flex-row-gap(35px);
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      color: #FFF;
+      font-size: 40px;
+      font-weight: 500;
+    }
+
+    .right {
+      @include flex-row-gap(20px);
+      align-items: center;
+
+      span{
+        color: #A066BF;
+        font-size: 40px;
+        font-weight: 500;
+      }
+
+      button{
+        color: #FFF;
+        width: 361px;
+        height: 65px;
+        border: 1px solid #A066BF;
+        background: #150050;
+        font-size: 30px;
+        font-weight: 500;
+        cursor: pointer;
+      }
+    }
+  }
+}

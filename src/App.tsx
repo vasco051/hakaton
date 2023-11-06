@@ -7,11 +7,10 @@ function App() {
   accountAPI.useLoginQuery();
 
   return (
-      <>
-        <Header/>
-        <AppRouter/>
-      </>
-
+    <>
+      <Header/>
+      <AppRouter/>
+    </>
   );
 }
 

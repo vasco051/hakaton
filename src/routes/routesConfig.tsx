@@ -1,11 +1,9 @@
 import { Authorization, Registration } from 'pages/Auth';
 import Room from 'pages/Room';
-import Rooms from 'pages/Rooms';
-import CreateRoom from '../pages/Rooms/CreateRoom';
+import MainPage from "pages/MainPage";
+import { CreateRoom, Rooms } from 'pages/Rooms';
 
 import { staticLinks } from './routingLinks';
-import MainPage from "../pages/MainPage";
-
 
 export const publicRoutes = [
   {
