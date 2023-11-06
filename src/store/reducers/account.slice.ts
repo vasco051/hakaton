@@ -21,6 +21,7 @@ const accountSlice = createSlice({
     },
     clearUser: state => {
       state.user = null;
+      localStorage.removeItem('auth_token')
     }
   },
   extraReducers: builder =>

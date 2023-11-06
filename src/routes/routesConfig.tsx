@@ -4,12 +4,17 @@ import Rooms from 'pages/Rooms';
 import CreateRoom from '../pages/Rooms/CreateRoom';
 
 import { staticLinks } from './routingLinks';
+import MainPage from "../pages/MainPage";
 
 
 export const publicRoutes = [
   {
     path: staticLinks.notFound,
-    element: <Authorization/>
+    element: <MainPage/>
+  },
+  {
+    path: staticLinks.main,
+    element: <MainPage/>
   }
 ];
 
