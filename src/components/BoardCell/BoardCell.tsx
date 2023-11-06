@@ -1,59 +1,48 @@
+import { clsx } from 'clsx';
+
+import { TBoardCell } from 'models/TBoardCell';
 import { FC } from 'react';
 
+import styles from './styles.module.scss';
 import { CellVariant } from './types';
 
 
 interface IBoardCellProps {
   variant: CellVariant,
-  item: any
+  item: TBoardCell
 }
 
 const BoardCell: FC<IBoardCellProps> = ({
   variant,
   item
 }) => {
-
-  if (variant === CellVariant.TOP) {
-    return (
-      <li>
-
-      </li>
-    );
-  }
-
-  if (variant === CellVariant.RIGHT) {
-    return (
-      <li>
-
-      </li>
-    );
-  }
-
-  if (variant === CellVariant.BOTTOM) {
-    return (
-      <li>
-
-      </li>
-    );
-  }
-
-  if (variant === CellVariant.LEFT) {
-    return (
-      <li>
-
-      </li>
-    );
-  }
+  const cellClasses = clsx(styles.cell, {
+    [styles.top]: variant === CellVariant.TOP,
+    [styles.right]: variant === CellVariant.RIGHT,
+    [styles.bottom]: variant === CellVariant.BOTTOM,
+    [styles.left]: variant === CellVariant.LEFT
+  });
 
   if (variant === CellVariant.CORNER) {
     return (
-      <li>
+      <li className={styles.corner}>
 
       </li>
-    )
+    );
   }
 
-  return null
+  return (
+    <li className={cellClasses}>
+      {item.coast && (
+        <div className={styles.coast}>
+          <span>{item.coast}</span>
+        </div>
+      )}
+      <div className={styles.imageWrapper}>
+        <img src={item.image} alt="" className={styles.image}/>
+      </div>
+    </li>
+  );
 };
 
 export default BoardCell;
