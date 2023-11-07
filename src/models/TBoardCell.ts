@@ -3,6 +3,7 @@ export type TBoardCell = {
   title: string;
   cost: number;
   image: string;
+  index: number;
   type: CellTypeVariant;
 }
 

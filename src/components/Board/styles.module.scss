@@ -16,6 +16,10 @@
 
   .left, .right {
     @include flex-col-gap(1px);
+
+  }
+  .left{
+    flex-direction: column-reverse;
   }
 }
 
@@ -43,4 +47,5 @@
 
 .bottom {
   align-items: flex-start;
+  flex-direction: row-reverse;
 }
