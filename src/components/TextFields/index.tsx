@@ -3,15 +3,12 @@ import clsx from 'clsx';
 
 import { TextFieldProps } from './types.ts';
 
-import styles from './TextFields.module.scss';
+import styles from './styles.module.scss';
 
 const TextField: FC<TextFieldProps> = ({
   id,
   label,
-  validation,
   disabled,
-  reference,
-  type = 'text',
   className = '',
   wrapperClassName = '',
   placeholder = ' ',
@@ -25,7 +22,6 @@ const TextField: FC<TextFieldProps> = ({
 
   const textFieldStyle = clsx(styles.input, {
     [className]: !!className,
-    [styles.validation]: !!validation,
   });
 
   return (
@@ -38,7 +34,6 @@ const TextField: FC<TextFieldProps> = ({
 
       <input
         id={id}
-        ref={reference}
         type={"text"}
         disabled={disabled}
         placeholder={placeholder}

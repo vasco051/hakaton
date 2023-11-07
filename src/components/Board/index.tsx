@@ -7,8 +7,6 @@ import { cardAPI } from 'services/cardService.ts';
 
 import styles from './styles.module.scss';
 
-
-
 export const Board: FC = () => {
   const { id } = useParams();
   const { data: cards } = cardAPI.useFetchAllCardsQuery(parseInt(id!));

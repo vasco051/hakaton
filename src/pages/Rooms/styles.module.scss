@@ -12,24 +12,10 @@
 
   input {
     width: 630px;
-    height: 65px;
-
-    border: 1px solid #A066BF;
-    background: transparent;
   }
 
   button {
-    width: 361px;
-    height: 65px;
-
-    border: 1px solid #A066BF;
-    background: #150050;
-
-    color: #FFF;
-    font-size: 30px;
-    font-weight: 500;
-
-    cursor: pointer;
+    max-width: 630px;
   }
 
   .block {
@@ -45,20 +31,9 @@
     @include flex-row-gap(20px);
 
     .item button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 65px;
-      height: 65px;
-
-      color: #FFF;
-      font-size: 30px;
-      font-weight: 500;
-
-      border: 1px solid #A066BF;
-      background: #150050;
-      cursor: pointer;
+      width: 60px;
+      padding-right: 0;
+      padding-left: 0;
     }
 
     .isActive button {
@@ -69,8 +44,24 @@
 }
 
 .rooms {
+  @include flex-col-gap(45px);
   max-width: 1320px;
   margin: 200px auto;
+
+  .header {
+    @include flex-row-gap(35px);
+    align-items: center;
+    justify-content: space-between;
+
+    padding-bottom: 30px;
+    border-bottom: 1px solid #A066BF;
+
+    h2 {
+      color: #FFF;
+      font-size: 50px;
+      font-weight: 700;
+    }
+  }
 
   .list {
     @include flex-col-gap(20px);
@@ -95,17 +86,6 @@
         color: #A066BF;
         font-size: 40px;
         font-weight: 500;
-      }
-
-      button{
-        color: #FFF;
-        width: 361px;
-        height: 65px;
-        border: 1px solid #A066BF;
-        background: #150050;
-        font-size: 30px;
-        font-weight: 500;
-        cursor: pointer;
       }
     }
   }
