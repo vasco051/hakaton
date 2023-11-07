@@ -12,10 +12,10 @@
 
   input {
     width: 630px;
-    height: 65px;
+  }
 
-    border: 1px solid #A066BF;
-    background: transparent;
+  button {
+    max-width: 630px;
   }
 
   .block {
@@ -31,20 +31,9 @@
     @include flex-row-gap(20px);
 
     .item button {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      width: 65px;
-      height: 65px;
-
-      color: #FFF;
-      font-size: 30px;
-      font-weight: 500;
-
-      border: 1px solid #A066BF;
-      background: #150050;
-      cursor: pointer;
+      width: 60px;
+      padding-right: 0;
+      padding-left: 0;
     }
 
     .isActive button {
@@ -97,17 +86,6 @@
         color: #A066BF;
         font-size: 40px;
         font-weight: 500;
-      }
-
-      button{
-        color: #FFF;
-        width: 361px;
-        height: 65px;
-        border: 1px solid #A066BF;
-        background: #150050;
-        font-size: 30px;
-        font-weight: 500;
-        cursor: pointer;
       }
     }
   }

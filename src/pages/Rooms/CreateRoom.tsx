@@ -3,8 +3,11 @@ import { useFormik } from 'formik';
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Button from 'components/Buttons';
+
 import { roomAPI } from 'services/roomService';
 import { staticLinks } from 'routes/routingLinks';
+import TextField from '../../components/TextFields';
 
 import styles from './styles.module.scss';
 
@@ -40,23 +43,25 @@ const CreateRoom: FC = () => {
     <form onSubmit={formik.handleSubmit} className={styles.createRoom}>
       <h1>Создание игры</h1>
 
-      <div className={styles.block}>
-        <span>Название</span>
-        <input type="text" value={formik.values.title} onChange={formik.handleChange} name="title"/>
-      </div>
+      <TextField
+        label="Название"
+        name="title"
+        value={formik.values.title}
+        onChange={formik.handleChange}
+      />
 
       <div className={styles.block}>
         <span>Кол-во игроков</span>
         <ul className={styles.countPlayers}>
           {countPlayers.map(count => (
             <li className={getItemClasses(count)} key={count}>
-              <button type="button" onClick={() => setCurrentCountPlayer(count)}>{count}</button>
+              <Button type="button" onClick={() => setCurrentCountPlayer(count)}>{count}</Button>
             </li>
           ))}
         </ul>
       </div>
 
-      <button>Создать игру</button>
+      <Button type='submit'>Создать игру</Button>
     </form>
   );
 };

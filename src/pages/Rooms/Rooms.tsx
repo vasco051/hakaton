@@ -1,9 +1,10 @@
 import { FC, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
+import Button from 'components/Buttons';
+
 import { roomAPI } from 'services/roomService';
 import { staticLinks } from 'routes/routingLinks';
-import Button from '../../components/Buttons/Button';
 
 import styles from './styles.module.scss';
 
@@ -29,7 +30,7 @@ const Rooms: FC = () => {
 
       <ul className={styles.list}>
         {rooms.map(room => (
-          <li className={styles.item}>
+          <li className={styles.item} key={room.id}>
             <span className={styles.title}>{room.title}</span>
             <div className={styles.right}>
               <span>{room.count_players_now} / {room.count_players}</span>

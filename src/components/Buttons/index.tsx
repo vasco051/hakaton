@@ -4,7 +4,7 @@ import clsx from 'clsx';
 
 import { TButtonProps } from './types.ts';
 
-import styles from './Button.module.scss';
+import styles from './styles.module.scss';
 
 const Button: FC<TButtonProps> = ({
   theme = 'filled',

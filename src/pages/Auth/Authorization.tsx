@@ -1,8 +1,10 @@
 import { FC } from 'react';
 import { useFormik } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from 'hooks/redux';
+import Button from 'components/Buttons';
+import TextField from 'components/TextFields';
 
 import { accountAPI } from 'services/accountService';
 import { TRegisterInfo } from 'models/TUser';
@@ -10,6 +12,7 @@ import { staticLinks } from 'routes/routingLinks';
 import { setUser } from 'store/reducers/account.slice';
 
 import styles from './styles.module.scss';
+
 
 const Authorization: FC = () => {
   const [
@@ -43,31 +46,25 @@ const Authorization: FC = () => {
     <form onSubmit={formik.handleSubmit} className={styles.form}>
       <h1>Авторизация</h1>
 
-      <div className={styles.block}>
-        <span>Введите логин</span>
+      <TextField
+        label="Введите логин"
+        name="login"
+        value={formik.values.login}
+        onChange={formik.handleChange}
+      />
 
-        <input
-          name="login"
-          type="text"
-          value={formik.values.login}
-          onChange={formik.handleChange}
-        />
-      </div>
-
-      <div className={styles.block}>
-        <span>Введите пароль</span>
-
-        <input
-          name="password"
-          type="text"
-          value={formik.values.password}
-          onChange={formik.handleChange}
-        />
-      </div>
+      <TextField
+        label="Введите пароль"
+        name="password"
+        value={formik.values.password}
+        onChange={formik.handleChange}
+      />
 
       {error && <span>Произошла ошибка</span>}
 
-      <button type="submit">Войти</button>
+      <Button type="submit">Войти</Button>
+
+      <Link className={styles.redirect} to={staticLinks.registration}>Регистрация</Link>
     </form>
   );
 };
