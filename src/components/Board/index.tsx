@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { useParams } from 'react-router-dom';
+import {FC, useEffect} from 'react';
+import {useLocation, useParams} from 'react-router-dom';
 
 import { useAppSelector } from 'hooks/redux';
 import { BoardCell, CellVariant } from 'components/BoardCell';
@@ -10,8 +10,15 @@ import styles from './styles.module.scss';
 
 export const Board: FC = () => {
   const { id } = useParams();
-  cardAPI.useFetchAllCardsQuery(parseInt(id!));
+  const location = useLocation()
+
+  const {refetch} = cardAPI.useFetchAllCardsQuery(parseInt(id!));
   const {cards} = useAppSelector(state => state.cardReducer)
+
+  useEffect(() => {
+    refetch()
+  }, [location.pathname]);
+
 
   return (
     <section className={styles.board}>

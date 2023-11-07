@@ -2,20 +2,21 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    li{
-        padding: 10px 35px;
+    .answer{
         border: 1px solid #FFF;
         background: #150050;
     }
 }
 
 .correct{
+    padding: 10px 35px;
     border: 1px solid #FFF;
-    background: #54B435!important;
+    background: #54B435;
 }
 .incorrect{
+    padding: 10px 35px;
     border: 1px solid #FFF;
-    background: #F45050!important;
+    background: #F45050;
 }
 .title{
     color: #FFF;

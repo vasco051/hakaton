@@ -1,10 +1,10 @@
 import { FC, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 
 import Button from 'components/Buttons';
 
 import { roomAPI } from 'services/roomService';
-import { staticLinks } from 'routes/routingLinks';
+import {dynamicLinks, staticLinks} from 'routes/routingLinks';
 
 import styles from './styles.module.scss';
 
@@ -12,7 +12,17 @@ const Rooms: FC = () => {
   const {
     data: roomsResponse,
     refetch
-  } = roomAPI.useFetchAllRoomsQuery();
+  } = roomAPI.useFetchAllRoomsQuery('',
+    {pollingInterval: 1000}
+  );
+  const navigate = useNavigate();
+  if(roomsResponse!==undefined){
+    if(roomsResponse.room_id_to_current_user!==null){
+
+        navigate(dynamicLinks.room(roomsResponse.room_id_to_current_user));
+    }
+  }
+
   const [ joinToRome ] = roomAPI.useJoinToRoomMutation();
 
   const location = useLocation();

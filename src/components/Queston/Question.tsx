@@ -82,7 +82,7 @@ const Question: FC = () => {
               return(<li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={styles.incorrect}>{answer.title}</li>)
             }}
             )) :(question.answers.map(answer => (
-              <li key={answer.id} onClick={() => onCheckAnswer(answer.id)}>{answer.title}</li>
+              <li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={styles.answer}>{answer.title}</li>
             )))}
         </ul>
       </Popup>

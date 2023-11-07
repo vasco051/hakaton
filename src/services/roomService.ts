@@ -1,14 +1,14 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { createApi } from '@reduxjs/toolkit/dist/query/react';
 
-import { TRoomCreate, TRoomCreateResponse, TRoomResponse } from 'models/TRoom';
+import {TRoomCreate, TRoomCreateResponse, TRoomResponse} from 'models/TRoom';
 
 
 export const roomAPI = createApi({
   reducerPath: 'roomAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api' }),
   endpoints: build => ({
-    fetchAllRooms: build.query<TRoomResponse, void>({
+    fetchAllRooms: build.query<TRoomResponse, string>({
       query: () => ({
         url: '/rooms/',
         headers: { Authorization: `Token ${localStorage.getItem('auth_token')}` }
