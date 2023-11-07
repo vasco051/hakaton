@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, ReactNode } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useAppSelector } from 'hooks/redux';
@@ -8,10 +8,15 @@ import { cardAPI } from 'services/cardService.ts';
 
 import styles from './styles.module.scss';
 
-export const Board: FC = () => {
+
+interface IBoardProps {
+  centerSlot: ReactNode;
+}
+
+export const Board: FC<IBoardProps> = ({ centerSlot }) => {
   const { id } = useParams();
   cardAPI.useFetchAllCardsQuery(parseInt(id!));
-  const {cards} = useAppSelector(state => state.cardReducer)
+  const { cards } = useAppSelector(state => state.cardReducer);
 
   return (
     <section className={styles.board}>
@@ -26,7 +31,7 @@ export const Board: FC = () => {
           {cards &&cards.LEFT.map(item => <BoardCell variant={CellVariant.LEFT} item={item }/>)}
         </ul>
         <div className={styles.centerSlot}>
-          chat slot
+          {centerSlot}
         </div>
         <ul className={styles.right}>
           {cards &&cards.RIGHT.map(item => <BoardCell variant={CellVariant.RIGHT} item={item }/>)}

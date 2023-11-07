@@ -35,6 +35,9 @@
   }
 
   .centerSlot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 593px;
     height: 593px;
     background: #150050;

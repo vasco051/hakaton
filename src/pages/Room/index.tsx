@@ -14,6 +14,7 @@ import { questionAPI } from 'services/questionService';
 
 import { generateRandomDice, setIsVisible } from 'store/reducers/diceSlice.ts';
 import { setIdCurrentCard, setLoading } from 'store/reducers/question.slice';
+import Button from '../../components/Buttons';
 
 import styles from './styles.module.scss';
 
@@ -32,24 +33,6 @@ const Room: FC = () => {
   const { refetch: refetchQuesion } = questionAPI.useFetchQuestionQuery();
 
   userAPI.useFetchAllUsersQuery(parseInt(id!));
-
-
-  // useEffect(() => {
-  //   const client = new WebSocketClient(`ws://127.0.0.1:8000/ws/room/${id}/`);
-  //   client.connect();
-  //
-  //   setTimeout(() => {
-  //     client.send(JSON.stringify({
-  //       type: 'send_color',
-  //       color: 'dsf'
-  //     }));
-  //   }, 500);
-  //
-  //
-  //   setTimeout(() =>  {
-  //     dispatch(setIdCurrentCard(45))
-  //   }, 2000)
-  // }, []);
 
   const doDice = () => {
     dispatch(setLoading(false));
@@ -73,14 +56,15 @@ const Room: FC = () => {
 
   return (
     <section className={styles.room}>
-      <button onClick={() => doDice()}>передвинуть</button>
       {isVisible && <Dice/>}
       {users.map(user => (
         <PlayerIcon position={user.position + 1} key={user.id}/>
       ))}
       <Question/>
       <UserList users={users}/>
-      <Board/>
+      <Board centerSlot={
+        <Button onClick={() => doDice()}>Бросить кубики</Button>
+      }/>
     </section>
   );
 };
