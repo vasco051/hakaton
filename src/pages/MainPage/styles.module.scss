@@ -1,6 +1,7 @@
 .wrapper{
   background: linear-gradient(116deg, #150050 0%, #610094 80.45%);
 }
+
 .intro{
   max-width: 1320px;
   margin: 0 auto;
@@ -9,40 +10,34 @@
   align-items: center;
   margin-top: -102px;
 }
+
 .introWrapper{
   background: linear-gradient(116deg, #150050 0%, #610094 80.45%);
 }
+
 .title{
   color: #FFF;
   font-size: 50px;
   font-weight: 700;
 }
+
 .subTitle{
   color: #FFF;
   font-size: 30px;
   font-weight: 400;
 }
-.linkBtn{
-  border: 1px solid #A066BF;
-  background: #150050;
-  width: 361px;
-  height: 65px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #FFF;
-  font-size: 30px;
-  font-weight: 500;
-}
+
 .image{
   width: 467px;
   height: 467px;
 }
+
 .rules{
   padding: 50px 0;
   width: 1320px;
   margin: 0 auto;
 }
+
 .text{
   display: flex;
   flex-direction: column;
@@ -53,6 +48,7 @@
   font-weight: 500;
   line-height: 130%; /* 32.5px */
 }
+
 .rulesBackground{
   background: #21005B;
 }

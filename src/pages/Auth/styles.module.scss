@@ -11,31 +11,11 @@
 
   h1 {
     color: #FFF;
-
     font-size: 40px;
   }
 
-  .block {
-    @include flex-col-gap(20px);
-
-    span {
-      color: #FFF;
-      font-size: 30px;
-    }
-
-    input {
-      height: 68px;
-
-      padding: 0 20px;
-      font-size: 24px;
-
-      color: #FFF;
-      background: transparent;
-      border: 1px solid #FFF;
-    }
-  }
-
-  button{
-    height: 68px;
+  .redirect {
+    color: #fff;
+    text-decoration: underline;
   }
 }
