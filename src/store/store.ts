@@ -15,6 +15,7 @@ const reducers = combineReducers({
   accountReducer,
   diceReducer,
   questionReducer,
+
   [accountAPI.reducerPath]: accountAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
   [cardAPI.reducerPath]: cardAPI.reducer,

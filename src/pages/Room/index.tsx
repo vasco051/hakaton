@@ -56,9 +56,6 @@ const Room: FC = () => {
       {isVisible && <Dice userId={1}/>}
       <PlayerIcon position={sumCells} previous={previous}/>
       <Question/>
-      <button onClick={() => doDice()}>передвинуть</button>
-      {IsVisible && <Dice userId={1}/>}
-      <PlayerIcon position={sumCells}/>
       <UserList users={users}/>
       <Board/>
     </section>
