@@ -14,13 +14,11 @@ interface  IDiceProps {
 
 
 export const Dice:FC<IDiceProps>= () => {
-    const [isVisible, setIsVisible] = useState<boolean>(false)
-    const { random } = useAppSelector(state => state.diceReducer)
+    const { random, isVisible } = useAppSelector(state => state.diceReducer)
     const dispatch = useAppDispatch()
     useEffect(()=>{
         dispatch(getRandomDice())
-        setIsVisible(true);
-        setTimeout(()=>{setIsVisible(false);},600)
+
     },[])
 
     const  diceEdges= [IcDice1,IcDice2,IcDice3,IcDice4,IcDice5,IcDice6]

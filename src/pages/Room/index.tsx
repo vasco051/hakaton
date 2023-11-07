@@ -9,7 +9,7 @@ import { userAPI } from 'services/userService';
 
 import styles from './styles.module.scss';
 import PlayerIcon from "../../components/PlayerIcon";
-import {diceSlice, getRandomDice, setRandomDice} from "../../store/reducers/diceSlice.ts";
+import {diceSlice, getRandomDice, setIsVisible, setRandomDice} from "../../store/reducers/diceSlice.ts";
 import {Dice} from "../../components/dice/ui/Dice.tsx";
 import {useAppDispatch, useAppSelector} from "../../hooks/redux.ts";
 
@@ -31,20 +31,23 @@ const Room: FC = () => {
     }, 500);
   }, []);
 
-  const [IsVisible, setIsVisible]=useState(false)
-  const { random,sumCells } = useAppSelector(state => state.diceReducer)
+  const { random,sumCells,isVisible,previous } = useAppSelector(state => state.diceReducer)
   const dispatch = useAppDispatch()
   const doDice = ()=>{
-    dispatch(getRandomDice())
-    dispatch(setRandomDice(random[0]+random[1]))
-    setIsVisible(true);
 
+    dispatch(setIsVisible(true));
+    setTimeout(()=>{dispatch(setIsVisible(false));},1000)
   }
+  useEffect(() => {
+    console.log(random)
+    dispatch(setRandomDice(random[0]+random[1]))
+  }, [random]);
   return (
     <section className={styles.room}>
+
       <button onClick={()=>doDice()}>передвинуть</button>
-      {IsVisible && <Dice userId={1}/>}
-      <PlayerIcon position={sumCells}/>
+      {isVisible && <Dice userId={1}/>}
+      <PlayerIcon position={sumCells} previous={previous}/>
       <UserList users={users}/>
       <Board/>
     </section>
