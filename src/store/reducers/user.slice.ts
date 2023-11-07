@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
 import { TUser } from 'models/TUser';
 import { userAPI } from 'services/userService';
 
@@ -10,7 +11,6 @@ interface ISliceState {
 const initialState: ISliceState = {
   users: []
 };
-
 
 const userSlice = createSlice({
   name: 'user',

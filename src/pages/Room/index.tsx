@@ -1,19 +1,21 @@
 import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { Board } from 'components/Board';
-import { UserList } from 'components/UserList';
+import { useAppDispatch, useAppSelector } from 'hooks/redux.ts';
 
+import Question from 'components/Queston/Question';
+import PlayerIcon from 'components/PlayerIcon';
+import { UserList } from 'components/UserList';
+import { Board } from 'components/Board';
+import { Dice } from 'components/dice/ui/Dice.tsx';
+
+import { userAPI } from 'services/userService';
+
+import { setIdCurrentCard } from 'store/reducers/question.slice';
 import { WebSocketClient } from 'store/websocketClient';
-import Question from '../../components/Queston/Question';
-import { userAPI } from '../../services/userService';
-import { setIdCurrentCard } from '../../store/reducers/question.slice';
+import { getRandomDice, setRandomDice } from 'store/reducers/diceSlice.ts';
 
 import styles from './styles.module.scss';
-import PlayerIcon from 'components/PlayerIcon';
-import { getRandomDice, setRandomDice } from 'store/reducers/diceSlice.ts';
-import { Dice } from 'components/dice/ui/Dice.tsx';
-import { useAppDispatch, useAppSelector } from 'hooks/redux.ts';
 
 const Room: FC = () => {
   const { id } = useParams();

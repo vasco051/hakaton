@@ -1,10 +1,11 @@
 import { FC, useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
-import { questionAPI } from 'services/questionService';
-import { setUserBalance } from '../../store/reducers/user.slice';
-import Popup from '../Poppers/Popup/Popup';
 
+import { useAppDispatch, useAppSelector } from 'hooks/redux';
+import Popup from 'components/Poppers/Popup/Popup';
+
+import { questionAPI } from 'services/questionService';
+import { setUserBalance } from 'store/reducers/user.slice';
 
 const Question: FC = () => {
   const [ isOpenModal, setIsOpenModal ] = useState(true);
@@ -12,7 +13,7 @@ const Question: FC = () => {
   const {
     data: question,
     refetch
-  } = questionAPI.useFetchQuestionQuery(idCurrentCard);
+  } = questionAPI.useFetchQuestionQuery();
   const [ checkAnswer, { data: checkResponse } ] = questionAPI.useFetchCheckAnswerMutation();
 
   const dispatch = useAppDispatch();
