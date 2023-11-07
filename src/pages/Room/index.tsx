@@ -10,56 +10,74 @@ import { Board } from 'components/Board';
 import { Dice } from 'components/dice/ui/Dice.tsx';
 
 import { userAPI } from 'services/userService';
+import { questionAPI } from 'services/questionService';
 
-import { setIsVisible, setRandomDice} from "../../store/reducers/diceSlice.ts";
-import { setIdCurrentCard } from 'store/reducers/question.slice';
-import { WebSocketClient } from 'store/websocketClient';
+import { generateRandomDice, setIsVisible } from 'store/reducers/diceSlice.ts';
+import { setIdCurrentCard, setLoading } from 'store/reducers/question.slice';
 
 import styles from './styles.module.scss';
 
+
 const Room: FC = () => {
   const { id } = useParams();
+  const dispatch = useAppDispatch();
+
+  const {
+    sumDice,
+    isVisible
+  } = useAppSelector(state => state.diceReducer);
   const { users } = useAppSelector(state => state.userReducer);
+
+  const [ fetchStepUser, { data: stepInfo } ] = userAPI.useFetchStepUserMutation();
+  const { refetch: refetchQuesion } = questionAPI.useFetchQuestionQuery();
+
   userAPI.useFetchAllUsersQuery(parseInt(id!));
 
-  useEffect(() => {
-    const client = new WebSocketClient(`ws://127.0.0.1:8000/ws/room/${id}/`);
-    client.connect();
 
+  // useEffect(() => {
+  //   const client = new WebSocketClient(`ws://127.0.0.1:8000/ws/room/${id}/`);
+  //   client.connect();
+  //
+  //   setTimeout(() => {
+  //     client.send(JSON.stringify({
+  //       type: 'send_color',
+  //       color: 'dsf'
+  //     }));
+  //   }, 500);
+  //
+  //
+  //   setTimeout(() =>  {
+  //     dispatch(setIdCurrentCard(45))
+  //   }, 2000)
+  // }, []);
 
-
-
-    setTimeout(() => {
-      client.send(JSON.stringify({
-        type: 'send_color',
-        color: 'dsf'
-      }));
-    }, 500);
-
-
-    setTimeout(() =>  {
-      dispatch(setIdCurrentCard(45))
-    }, 2000)
-  }, []);
-
-  const { random,sumCells,isVisible,previous } = useAppSelector(state => state.diceReducer)
-  const dispatch = useAppDispatch()
-  const doDice = ()=>{
-
+  const doDice = () => {
+    dispatch(setLoading(false));
     dispatch(setIsVisible(true));
-    setTimeout(()=>{dispatch(setIsVisible(false));},1000)
-  }
-  useEffect(() => {
-    console.log(random)
-    dispatch(setRandomDice(random[0]+random[1]))
+    dispatch(generateRandomDice());
+    setTimeout(() => {
+      dispatch(setIsVisible(false));
+    }, 1000);
+  };
 
-  }, [random]);
+  useEffect(() => {
+    fetchStepUser(sumDice);
+  }, [ sumDice ]);
+
+  useEffect(() => {
+    if (stepInfo) {
+      refetchQuesion();
+      dispatch(setIdCurrentCard(stepInfo.card_id));
+    }
+  }, [ stepInfo ]);
+
   return (
     <section className={styles.room}>
-
-      <button onClick={()=>doDice()}>передвинуть</button>
-      {isVisible && <Dice userId={1}/>}
-      <PlayerIcon position={sumCells} previous={previous}/>
+      <button onClick={() => doDice()}>передвинуть</button>
+      {isVisible && <Dice/>}
+      {users.map(user => (
+        <PlayerIcon position={user.position + 1} key={user.id}/>
+      ))}
       <Question/>
       <UserList users={users}/>
       <Board/>

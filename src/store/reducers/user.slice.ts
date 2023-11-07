@@ -27,13 +27,19 @@ const userSlice = createSlice({
       });
     }
   },
-  extraReducers: builder =>
+  extraReducers: builder => {
     builder.addMatcher(userAPI.endpoints.fetchAllUsers.matchFulfilled, (state, { payload: users }) => {
-      console.log(users);
       state.users = users;
-    })
+    }),
+    builder.addMatcher(userAPI.endpoints.fetchStepUser.matchFulfilled, (state, { payload: { user } }) => {
+      state.users.forEach(currentUser => {
+        if (currentUser.id === user.id) {
+          currentUser.position = user.position;
+        }
+      });
+    });
+  }
 });
-
 
 export default userSlice.reducer;
 export const {setUserBalance} = userSlice.actions;

@@ -21,4 +21,5 @@ export type TUser = {
   is_sleep: boolean,
   is_active: boolean,
   is_walk: boolean
+  position: number
 }

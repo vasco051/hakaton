@@ -12,6 +12,14 @@ export const userAPI = createApi({
       query: (id: number) => ({
         url: `/rooms/${id}/users/`
       })
+    }),
+    fetchStepUser: build.mutation<{ user: TUser, card_id: number }, number>({
+      query: (sumDice: number) => ({
+        url: '/users/step/',
+        headers: { Authorization: `Token ${localStorage.getItem('auth_token')}` },
+        body: { position:  sumDice },
+        method: 'post'
+      })
     })
   })
 });

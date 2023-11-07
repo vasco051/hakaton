@@ -8,22 +8,29 @@ import { questionAPI } from 'services/questionService';
 import { setUserBalance } from 'store/reducers/user.slice';
 
 const Question: FC = () => {
-  const [ isOpenModal, setIsOpenModal ] = useState(true);
-  const { idCurrentCard } = useAppSelector(state => state.questionReducer);
+  const [ isOpenModal, setIsOpenModal ] = useState(false);
   const {
-    data: question,
-    refetch
-  } = questionAPI.useFetchQuestionQuery();
+    idCurrentCard,
+    question,
+    isFirstLoading
+  } = useAppSelector(state => state.questionReducer);
+  const { refetch: refetchQuesion } = questionAPI.useFetchQuestionQuery();
   const [ checkAnswer, { data: checkResponse } ] = questionAPI.useFetchCheckAnswerMutation();
 
   const dispatch = useAppDispatch();
   const { id: idRoom } = useParams();
 
   useEffect(() => {
-    refetch();
+    refetchQuesion();
   }, [ idCurrentCard ]);
 
-  if (!question) return null;
+  useEffect(() => {
+    if (question) {
+      setIsOpenModal(true);
+    }
+  }, [ question ]);
+
+  if (!question || isFirstLoading) return null;
 
   const onCheckAnswer = (answerId: number) => {
     checkAnswer({
