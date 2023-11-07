@@ -5,8 +5,8 @@ import { Board } from 'components/Board';
 import { UserList } from 'components/UserList';
 
 import { WebSocketClient } from 'store/websocketClient';
-import { userAPI } from 'services/userService';
 import Question from '../../components/Queston/Question';
+import { userAPI } from '../../services/userService';
 import { setIdCurrentCard } from '../../store/reducers/question.slice';
 
 import styles from './styles.module.scss';
@@ -15,18 +15,20 @@ import { getRandomDice, setRandomDice } from 'store/reducers/diceSlice.ts';
 import { Dice } from 'components/dice/ui/Dice.tsx';
 import { useAppDispatch, useAppSelector } from 'hooks/redux.ts';
 
-
 const Room: FC = () => {
   const { id } = useParams();
-  const { data: users = [] } = userAPI.useFetchAllUsersQuery(parseInt(id!));
+  const { users } = useAppSelector(state => state.userReducer);
+  userAPI.useFetchAllUsersQuery(parseInt(id!));
 
   useEffect(() => {
-    const socket = new WebSocketClient(`ws://127.0.0.1:8000/ws/room/${id}/`);
+    const client = new WebSocketClient(`ws://127.0.0.1:8000/ws/room/${id}/`);
+    client.connect();
 
-    socket.connect();
+
+
 
     setTimeout(() => {
-      socket.send(JSON.stringify({
+      client.send(JSON.stringify({
         type: 'send_color',
         color: 'dsf'
       }));

@@ -2,6 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'hooks/redux';
 import { useParams } from 'react-router-dom';
 import { questionAPI } from 'services/questionService';
+import { setUserBalance } from '../../store/reducers/user.slice';
 import Popup from '../Poppers/Popup/Popup';
 
 
@@ -12,7 +13,7 @@ const Question: FC = () => {
     data: question,
     refetch
   } = questionAPI.useFetchQuestionQuery(idCurrentCard);
-  const [ checkAnswer ] = questionAPI.useFetchCheckAnswerMutation();
+  const [ checkAnswer, { data: checkResponse } ] = questionAPI.useFetchCheckAnswerMutation();
 
   const dispatch = useAppDispatch();
   const { id: idRoom } = useParams();
@@ -24,13 +25,30 @@ const Question: FC = () => {
   if (!question) return null;
 
   const onCheckAnswer = (answerId: number) => {
-    console.log('fsdkljfasdlkfjlksdafjlk');
     checkAnswer({
       idRoom: parseInt(idRoom!),
       answer_id: answerId,
       card_id: idCurrentCard!
     });
   };
+
+  if (checkResponse) {
+    if (checkResponse.send) {
+      if (checkResponse.current_balance?.id) {
+        dispatch(setUserBalance({
+          id: checkResponse.current_balance.id,
+          balance: checkResponse.current_balance.balance!
+        }));
+      }
+
+      if (checkResponse.owner_balance?.id) {
+        dispatch(setUserBalance({
+          id: checkResponse.owner_balance.id,
+          balance: checkResponse.owner_balance.balance!
+        }));
+      }
+    }
+  }
 
   return (
     <section>

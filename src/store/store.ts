@@ -3,6 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import accountReducer from './reducers/account.slice';
 import diceReducer from './reducers/diceSlice';
 import questionReducer from './reducers/question.slice';
+import userReducer from './reducers/user.slice';
 
 import { questionAPI } from 'services/questionService';
 import { accountAPI } from 'services/accountService';
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   accountReducer,
   diceReducer,
   questionReducer,
+  userReducer,
   [accountAPI.reducerPath]: accountAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
   [cardAPI.reducerPath]: cardAPI.reducer,

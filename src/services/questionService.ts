@@ -1,7 +1,7 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { createApi } from '@reduxjs/toolkit/dist/query/react';
 
-import { TCheckAnswerRequest, TQuestion } from 'models/TQuestion';
+import { TCheckAnswerRequest, TCheckAnswerResponse, TQuestion } from 'models/TQuestion';
 
 
 export const questionAPI = createApi({
@@ -14,7 +14,7 @@ export const questionAPI = createApi({
         headers: { Authorization: `Token ${localStorage.getItem('auth_token')}` }
       })
     }),
-    fetchCheckAnswer: build.mutation<any, TCheckAnswerRequest>({
+    fetchCheckAnswer: build.mutation<TCheckAnswerResponse, TCheckAnswerRequest>({
       query: ({
         idRoom,
         ...body
