@@ -1,6 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {TBoardCell, TBoardCellResponse} from "../../models/TBoardCell.ts";
-import {cardAPI} from "../../services/cardService.ts";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { TBoardCell, TBoardCellResponse } from 'models/TBoardCell.ts';
+import { cardAPI } from 'services/cardService.ts';
 
 
 interface ISliceState {
@@ -9,25 +9,45 @@ interface ISliceState {
 }
 
 const initialState: ISliceState = {
-	cards:null,
-	currentCard:null,
-}
+	cards: null,
+	currentCard: null
+};
 
 export const cardSlice = createSlice({
 	name: 'card',
 	initialState,
 	reducers: {
-		setCurrentCard(state, action: PayloadAction<TBoardCell>){
-		state.currentCard = action.payload
-		},
-
+		setColor: (state, {
+			payload: {
+				id,
+				color
+			}
+		}: PayloadAction<{ id: number, color: string | null }>) => {
+			if (state.cards) {
+				state.cards.TOP.forEach(card => {
+					if (card.id === id) card.color = color;
+				});
+				state.cards.RIGHT.forEach(card => {
+					if (card.id === id) card.color = color;
+				});
+				state.cards.BOTTOM.forEach(card => {
+					if (card.id === id) card.color = color;
+				});
+				state.cards.LEFT.forEach(card => {
+					if (card.id === id) card.color = color;
+				});
+				state.cards.CORNER.forEach(card => {
+					if (card.id === id) card.color = color;
+				});
+			}
+		}
 	},
 	extraReducers: builder =>
-		builder.addMatcher(cardAPI.endpoints?.fetchAllCards.matchFulfilled,(state, {payload: cards}) =>{
-			state.cards= cards;
+		builder.addMatcher(cardAPI.endpoints?.fetchAllCards.matchFulfilled, (state, { payload: cards }) => {
+			state.cards = cards;
 		})
 })
 
-export default cardSlice.reducer
+export default cardSlice.reducer;
 
-export const  { setCurrentCard} =  cardSlice.actions
+export const {setColor} = cardSlice.actions;

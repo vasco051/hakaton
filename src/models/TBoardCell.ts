@@ -5,6 +5,7 @@ export type TBoardCell = {
   image: string;
   index: number;
   type: CellTypeVariant;
+  color: string | null
 }
 
 export enum CellTypeVariant {

@@ -8,9 +8,10 @@ export const roomAPI = createApi({
   reducerPath: 'roomAPI',
   baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api' }),
   endpoints: build => ({
-    fetchAllRooms: build.query<TRoomResponse[], void>({
+    fetchAllRooms: build.query<TRoomResponse, void>({
       query: () => ({
-        url: '/rooms/'
+        url: '/rooms/',
+        headers: { Authorization: `Token ${localStorage.getItem('auth_token')}` }
       })
     }),
     createRoom: build.mutation<TRoomCreateResponse, TRoomCreate>({

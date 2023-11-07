@@ -4,6 +4,7 @@ import accountReducer from './reducers/account.slice';
 import diceReducer from './reducers/diceSlice';
 import questionReducer from './reducers/question.slice';
 import userReducer from './reducers/user.slice';
+import cardReducer from './reducers/card.slice'
 
 import { questionAPI } from 'services/questionService';
 import { accountAPI } from 'services/accountService';
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   diceReducer,
   questionReducer,
   userReducer,
+  cardReducer,
   [accountAPI.reducerPath]: accountAPI.reducer,
   [userAPI.reducerPath]: userAPI.reducer,
   [cardAPI.reducerPath]: cardAPI.reducer,
