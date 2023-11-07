@@ -26,7 +26,7 @@ const BoardCell: FC<IBoardCellProps> = ({
   if (variant === CellVariant.CORNER) {
     return (
       <li className={styles.corner} id={`cell${item.index}`} style={{ background: item.color || '' }}>
-        <p className={styles.textCorner}></p>
+        <p className={styles.textCorner}>{item.title}</p>
       </li>
     );
   }
@@ -39,7 +39,7 @@ const BoardCell: FC<IBoardCellProps> = ({
         </div>
       )}
       <div className={styles.imageWrapper} style={{ background: item.color || '' }}>
-        <p className={styles.textCorner}></p>
+        <p className={styles.text}>{item.title}</p>
       </div>
     </li>
   );
