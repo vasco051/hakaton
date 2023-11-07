@@ -1,26 +1,11 @@
 import {FC, useEffect } from 'react';
 import styles from './styles.module.scss'
-import {renderToString} from "react-dom/server";
 
 interface playerIconProps {
   position:number,
   previous:number,
 }
 const PlayerIcon:FC<playerIconProps> = ({position,previous}) => {
-
-
-  // useEffect(() => {
-  //
-  //   const cell = document.getElementById(`cell1`);
-  //   const iconElement = document.createElement('div'); // Создаем элемент DOM
-  //   iconElement.className = styles.icon;
-  //   cell.removeChild(iconElement)
-  //   const component = <div className={styles.icon}  />;
-  //   const componentString = renderToString(component);
-  //   if(cell) cell.innerHTML += componentString
-  //
-  //   console.log(position)
-  // }, []);
 
   useEffect(() => {
     const iconElement = document.createElement('div'); // Создаем элемент DOM

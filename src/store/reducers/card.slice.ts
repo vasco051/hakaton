@@ -4,7 +4,7 @@ import {cardAPI} from "../../services/cardService.ts";
 
 
 interface ISliceState {
-	cards: TBoardCellResponse | ,
+	cards: TBoardCellResponse | null,
 	currentCard: TBoardCell | null,
 }
 

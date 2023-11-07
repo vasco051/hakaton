@@ -48,6 +48,7 @@ const Room: FC = () => {
   useEffect(() => {
     console.log(random)
     dispatch(setRandomDice(random[0]+random[1]))
+
   }, [random]);
   return (
     <section className={styles.room}>
