@@ -2,12 +2,14 @@
     display: flex;
     flex-direction: column;
     gap: 15px;
-    .answer{
-        border: 1px solid #FFF;
-        background: #150050;
-    }
+
 }
 
+.answer{
+    padding: 10px 35px;
+    border: 1px solid #FFF;
+    background: #150050;
+}
 .correct{
     padding: 10px 35px;
     border: 1px solid #FFF;

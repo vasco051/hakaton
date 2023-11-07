@@ -9,6 +9,7 @@ import { setUserBalance } from 'store/reducers/user.slice';
 import { setColor } from '../../store/reducers/card.slice';
 
 import styles from './styles.module.scss'
+import {clsx} from "clsx";
 const Question: FC = () => {
   const [ isOpenModal, setIsOpenModal ] = useState(false);
   const {
@@ -24,7 +25,7 @@ const Question: FC = () => {
 
   useEffect(() => {
     refetchQuesion();
-  }, [ idCurrentCard ]);
+  },  [idCurrentCard, refetchQuesion]);
 
   useEffect(() => {
     if (question) {
@@ -35,13 +36,18 @@ const Question: FC = () => {
   if (!question || isFirstLoading) return null;
 
   const onCheckAnswer = (answerId: number) => {
+
     checkAnswer({
       idRoom: parseInt(idRoom!),
       answer_id: answerId,
       card_id: idCurrentCard!
     });
     SetVisibleAns(true)
-    setTimeout(()=>setIsOpenModal(false),3000)
+    setTimeout(()=>{
+      setIsOpenModal(false)
+      SetVisibleAns(false)
+    },2000)
+
   };
 
   if (checkResponse) {
@@ -73,17 +79,22 @@ const Question: FC = () => {
     <section>
       <Popup className={styles.popover} isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
         <h4 className={styles.title}>{question.title}</h4>
-
         <ul className={styles.answers}>
           {visibleAns ? (question.answers.map(answer => {
-            if(answer.is_correct){
-              return(<li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={styles.correct}>{answer.title}</li>)
-            }else{
-              return(<li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={styles.incorrect}>{answer.title}</li>)
-            }}
-            )) :(question.answers.map(answer => (
-              <li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={styles.answer}>{answer.title}</li>
-            )))}
+              const classes = clsx(
+                [styles.answer],
+                {
+                  [styles.correct]: answer.is_correct,
+                  [styles.incorrect]: !answer.is_correct,
+                }
+              );
+              return(<li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={classes}>{answer.title}</li>)
+            }
+            )) :(question.answers.map(answer =>
+              (<li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={styles.answer}>{answer.title}</li>)
+
+
+            ))}
         </ul>
       </Popup>
     </section>

@@ -2,11 +2,16 @@ export type TRoomCreate = {
   count_players: number
   title: string
 }
+export type TAllRoomResponse = {
+  rooms:TRoomResponse[]
+  id: number
+}
 
 export type TRoomCreateResponse = {
   count_players: number
   count_players_now: number
   id: number
+  users: [] | null
 }
 
 
