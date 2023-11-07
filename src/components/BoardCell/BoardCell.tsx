@@ -25,21 +25,21 @@ const BoardCell: FC<IBoardCellProps> = ({
 
   if (variant === CellVariant.CORNER) {
     return (
-      <li className={styles.corner}>
-        <img src={`http://127.0.0.1:8000${item.image}`} alt="" className={styles.image}/>
+      <li className={styles.corner} id={`cell${item.index}`}>
+        <img src={`http://127.0.0.1:8000${item?.image}`} alt="" className={styles.image}/>
       </li>
     );
   }
 
   return (
-    <li className={cellClasses}>
+    <li className={cellClasses} id={`cell${item.index}`}>
       {item.cost && (
         <div className={styles.coast}>
           <span>{item.cost} ₽</span>
         </div>
       )}
       <div className={styles.imageWrapper}>
-        <img src={`http://127.0.0.1:8000${item.image}`} alt="" className={styles.image}/>
+        <img src={`http://127.0.0.1:8000${item?.image}`} alt="" className={styles.image}/>
       </div>
     </li>
   );

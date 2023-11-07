@@ -6,18 +6,19 @@ import  IcDice3 from '../../../assets/images/dice/dice3.svg'
 import  IcDice4 from '../../../assets/images/dice/dice4.svg'
 import  IcDice5 from '../../../assets/images/dice/dice5.svg'
 import  IcDice6 from '../../../assets/images/dice/dice6.svg'
+import {useAppDispatch, useAppSelector} from "../../../hooks/redux.ts";
+import { getRandomDice} from "../../../store/reducers/diceSlice.ts";
 interface  IDiceProps {
   userId: number
 }
 
 
 export const Dice:FC<IDiceProps>= () => {
-    const min =1;
-    const max =7;
-    const [random,setRandom] = useState<number[]>([0,0])
     const [isVisible, setIsVisible] = useState<boolean>(false)
+    const { random } = useAppSelector(state => state.diceReducer)
+    const dispatch = useAppDispatch()
     useEffect(()=>{
-        setRandom([Math.floor(Math.random() * (max - min) + min),Math.floor(Math.random() * (max - min) + min)])
+        dispatch(getRandomDice())
         setIsVisible(true);
         setTimeout(()=>{setIsVisible(false);},600)
     },[])
