@@ -6,6 +6,8 @@ import { UserList } from 'components/UserList';
 
 import { WebSocketClient } from 'store/websocketClient';
 import { userAPI } from 'services/userService';
+import Question from '../../components/Queston/Question';
+import { setIdCurrentCard } from '../../store/reducers/question.slice';
 
 import styles from './styles.module.scss';
 import PlayerIcon from "../../components/PlayerIcon";
@@ -29,6 +31,11 @@ const Room: FC = () => {
         color: 'dsf'
       }));
     }, 500);
+
+
+    setTimeout(() =>  {
+      dispatch(setIdCurrentCard(45))
+    }, 2000)
   }, []);
 
   const { random,sumCells,isVisible,previous } = useAppSelector(state => state.diceReducer)
@@ -48,6 +55,10 @@ const Room: FC = () => {
       <button onClick={()=>doDice()}>передвинуть</button>
       {isVisible && <Dice userId={1}/>}
       <PlayerIcon position={sumCells} previous={previous}/>
+      <Question/>
+      <button onClick={() => doDice()}>передвинуть</button>
+      {IsVisible && <Dice userId={1}/>}
+      <PlayerIcon position={sumCells}/>
       <UserList users={users}/>
       <Board/>
     </section>
