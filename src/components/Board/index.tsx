@@ -1,4 +1,4 @@
-import {FC, useEffect} from 'react';
+import { FC, ReactNode, useEffect } from 'react';
 import {useLocation, useParams} from 'react-router-dom';
 
 import { useAppSelector } from 'hooks/redux';
@@ -8,7 +8,11 @@ import { cardAPI } from 'services/cardService.ts';
 
 import styles from './styles.module.scss';
 
-export const Board: FC = () => {
+interface IBoardProps {
+  slot: ReactNode
+}
+
+export const Board: FC<IBoardProps> = ({slot}) => {
   const { id } = useParams();
   const location = useLocation()
 
@@ -33,7 +37,7 @@ export const Board: FC = () => {
           {cards &&cards.LEFT.map(item => <BoardCell variant={CellVariant.LEFT} item={item }/>)}
         </ul>
         <div className={styles.centerSlot}>
-          chat slot
+          {slot}
         </div>
         <ul className={styles.right}>
           {cards &&cards.RIGHT.map(item => <BoardCell variant={CellVariant.RIGHT} item={item }/>)}

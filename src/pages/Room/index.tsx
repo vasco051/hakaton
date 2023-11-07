@@ -14,6 +14,7 @@ import { questionAPI } from 'services/questionService';
 
 import { generateRandomDice, setIsVisible } from 'store/reducers/diceSlice.ts';
 import { setIdCurrentCard, setLoading } from 'store/reducers/question.slice';
+import Button from '../../components/Buttons';
 
 import styles from './styles.module.scss';
 
@@ -73,14 +74,15 @@ const Room: FC = () => {
 
   return (
     <section className={styles.room}>
-      <button onClick={() => doDice()}>передвинуть</button>
       {isVisible && <Dice/>}
       {users.map(user => (
         <PlayerIcon position={user.position + 1} key={user.id}/>
       ))}
       <Question/>
       <UserList users={users}/>
-      <Board/>
+      <Board slot={
+        <Button onClick={() => doDice()}>передвинуть</Button>
+      }/>
     </section>
   );
 };

@@ -25,4 +25,5 @@ export type TCheckAnswerResponse = {
     id: number | null,
     balance: number | null
   }
+  walk_user_id: number
 }
