@@ -9,9 +9,14 @@ export type TRoomCreateResponse = {
   id: number
 }
 
+
 export type TRoomResponse = {
-  count_players: number
-  count_players_now: number
-  id: number
-  title: string
+  room_id_to_current_user: number | null
+  rooms: {
+    count_players: number
+    count_players_now: number
+    id: number
+    title: string
+    in_room: boolean
+  }[]
 }

@@ -10,7 +10,7 @@ import styles from './styles.module.scss';
 
 const Rooms: FC = () => {
   const {
-    data: rooms = [],
+    data: roomsResponse,
     refetch
   } = roomAPI.useFetchAllRoomsQuery();
   const [ joinToRome ] = roomAPI.useJoinToRoomMutation();
@@ -29,7 +29,7 @@ const Rooms: FC = () => {
       </div>
 
       <ul className={styles.list}>
-        {rooms.map(room => (
+        {roomsResponse?.rooms.map(room => (
           <li className={styles.item} key={room.id}>
             <span className={styles.title}>{room.title}</span>
             <div className={styles.right}>

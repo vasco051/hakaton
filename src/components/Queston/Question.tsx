@@ -6,6 +6,7 @@ import Popup from 'components/Poppers/Popup/Popup';
 
 import { questionAPI } from 'services/questionService';
 import { setUserBalance } from 'store/reducers/user.slice';
+import { setColor } from '../../store/reducers/card.slice';
 
 const Question: FC = () => {
   const [ isOpenModal, setIsOpenModal ] = useState(false);
@@ -42,6 +43,13 @@ const Question: FC = () => {
 
   if (checkResponse) {
     if (checkResponse.send) {
+      if (checkResponse.card_color) {
+        dispatch(setColor({
+          id: idCurrentCard! + 1,
+          color: checkResponse.card_color
+        }));
+      }
+
       if (checkResponse.current_balance?.id) {
         dispatch(setUserBalance({
           id: checkResponse.current_balance.id,
