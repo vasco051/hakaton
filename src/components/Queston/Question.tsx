@@ -6,7 +6,7 @@ import Popup from 'components/Poppers/Popup/Popup';
 
 import { questionAPI } from 'services/questionService';
 import { setUserBalance } from 'store/reducers/user.slice';
-
+import styles from './styles.module.scss'
 const Question: FC = () => {
   const [ isOpenModal, setIsOpenModal ] = useState(false);
   const {
@@ -16,7 +16,7 @@ const Question: FC = () => {
   } = useAppSelector(state => state.questionReducer);
   const { refetch: refetchQuesion } = questionAPI.useFetchQuestionQuery();
   const [ checkAnswer, { data: checkResponse } ] = questionAPI.useFetchCheckAnswerMutation();
-
+  const [visibleAns,SetVisibleAns] = useState(false)
   const dispatch = useAppDispatch();
   const { id: idRoom } = useParams();
 
@@ -38,6 +38,8 @@ const Question: FC = () => {
       answer_id: answerId,
       card_id: idCurrentCard!
     });
+    SetVisibleAns(true)
+    setTimeout(()=>setIsOpenModal(false),3000)
   };
 
   if (checkResponse) {
@@ -60,13 +62,19 @@ const Question: FC = () => {
 
   return (
     <section>
-      <Popup isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
-        <h4>{question.title}</h4>
+      <Popup className={styles.popover} isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
+        <h4 className={styles.title}>{question.title}</h4>
 
-        <ul>
-          {question.answers.map(answer => (
-            <li key={answer.id} onClick={() => onCheckAnswer(answer.id)}>{answer.title}</li>
-          ))}
+        <ul className={styles.answers}>
+          {visibleAns ? (question.answers.map(answer => {
+            if(answer.is_correct){
+              return(<li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={styles.correct}>{answer.title}</li>)
+            }else{
+              return(<li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={styles.incorrect}>{answer.title}</li>)
+            }}
+            )) :(question.answers.map(answer => (
+              <li key={answer.id} onClick={() => onCheckAnswer(answer.id)}>{answer.title}</li>
+            )))}
         </ul>
       </Popup>
     </section>
