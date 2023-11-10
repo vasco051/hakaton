@@ -1,6 +1,7 @@
 import { FC, ReactNode, useEffect } from 'react';
 import {useLocation, useParams} from 'react-router-dom';
 
+
 import { useAppSelector } from 'hooks/redux';
 import { BoardCell, CellVariant } from 'components/BoardCell';
 

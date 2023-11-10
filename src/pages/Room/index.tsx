@@ -34,24 +34,6 @@ const Room: FC = () => {
 
   userAPI.useFetchAllUsersQuery(parseInt(id!));
 
-
-  // useEffect(() => {
-  //   const client = new WebSocketClient(`ws://127.0.0.1:8000/ws/room/${id}/`);
-  //   client.connect();
-  //
-  //   setTimeout(() => {
-  //     client.send(JSON.stringify({
-  //       type: 'send_color',
-  //       color: 'dsf'
-  //     }));
-  //   }, 500);
-  //
-  //
-  //   setTimeout(() =>  {
-  //     dispatch(setIdCurrentCard(45))
-  //   }, 2000)
-  // }, []);
-
   const doDice = () => {
     dispatch(setLoading(false));
     dispatch(setIsVisible(true));
@@ -80,8 +62,8 @@ const Room: FC = () => {
       ))}
       <Question/>
       <UserList users={users}/>
-      <Board slot={
-        <Button onClick={() => doDice()}>передвинуть</Button>
+      <Board centerSlot={
+        <Button onClick={() => doDice()}>Бросить кубики</Button>
       }/>
     </section>
   );
