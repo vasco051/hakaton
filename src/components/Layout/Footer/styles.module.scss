@@ -1,0 +1,23 @@
+@import "src/assets/styles/templates";
+
+.footer {
+  @include flex-row-gap(20px);
+  @extend %wrapper;
+
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  padding: 60px 0;
+}
+
+.logoWrapper {
+  @include flex-row-gap(36px);
+  align-items: center;
+}
+
+.text{
+  color: #A066BF;
+  font-size: 30px;
+  font-weight: 700;
+ }

@@ -1,7 +1,7 @@
 import { FC, useEffect } from 'react';
 import {Link, useLocation, useNavigate} from 'react-router-dom';
 
-import Button from 'components/Buttons';
+import Button from 'components/UI-kit/Buttons/Button.tsx';
 
 import { roomAPI } from 'services/roomService';
 import {dynamicLinks, staticLinks} from 'routes/routingLinks';

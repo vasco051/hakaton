@@ -7,6 +7,7 @@ import {useAppDispatch, useAppSelector} from 'hooks/redux.ts';
 import Question from 'components/Queston/Question';
 import PlayerIcon from 'components/PlayerIcon';
 import {Board} from 'components/Board';
+import Button from 'components/UI-kit/Buttons/Button.tsx';
 import {Dice} from 'components/dice/ui/Dice.tsx';
 
 import {userAPI} from 'services/userService';
@@ -14,7 +15,6 @@ import {questionAPI} from 'services/questionService';
 
 import {generateRandomDice, setIsVisible} from 'store/reducers/diceSlice.ts';
 import {setIdCurrentCard, setLoading} from 'store/reducers/question.slice';
-import Button from '../../components/Buttons';
 
 import styles from './styles.module.scss';
 

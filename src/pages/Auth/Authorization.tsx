@@ -3,8 +3,8 @@ import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from 'hooks/redux';
-import Button from 'components/Buttons';
-import TextField from 'components/TextFields';
+import Button from 'components/UI-kit/Buttons/Button.tsx';
+import TextField from 'components/UI-kit/TextFields';
 
 import { accountAPI } from 'services/accountService';
 import { TRegisterInfo } from 'models/TUser';
@@ -12,7 +12,6 @@ import { staticLinks } from 'routes/routingLinks';
 import { setUser } from 'store/reducers/account.slice';
 
 import styles from './styles.module.scss';
-
 
 const Authorization: FC = () => {
   const [

@@ -19,7 +19,7 @@ const accountSlice = createSlice({
     setUser: (state, { payload: user }: PayloadAction<TAccountInfo>) => {
       state.user = user;
     },
-    clearUser: state => {
+    logout: state => {
       state.user = null;
       localStorage.removeItem('auth_token')
     }
@@ -33,5 +33,5 @@ const accountSlice = createSlice({
 export default accountSlice.reducer;
 export const {
   setUser,
-  clearUser
+	logout
 } = accountSlice.actions;

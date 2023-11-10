@@ -1,6 +1,6 @@
 import { FC } from 'react';
 
-import Button from 'components/Buttons';
+import Button from 'components/UI-kit/Buttons/Button.tsx';
 
 import { staticLinks } from 'routes/routingLinks.ts';
 

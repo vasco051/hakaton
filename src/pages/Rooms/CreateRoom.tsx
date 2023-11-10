@@ -3,11 +3,11 @@ import { useFormik } from 'formik';
 import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from 'components/Buttons';
+import Button from 'components/UI-kit/Buttons/Button.tsx';
 
 import { roomAPI } from 'services/roomService';
 import { staticLinks } from 'routes/routingLinks';
-import TextField from '../../components/TextFields';
+import TextField from '../../components/UI-kit/TextFields';
 
 import styles from './styles.module.scss';
 

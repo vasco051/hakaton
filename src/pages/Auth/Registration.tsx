@@ -3,8 +3,8 @@ import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch } from 'hooks/redux';
-import Button from 'components/Buttons';
-import TextField from 'components/TextFields';
+import Button from 'components/UI-kit/Buttons/Button.tsx';
+import TextField from 'components/UI-kit/TextFields';
 
 import { accountAPI } from 'services/accountService';
 import { setUser } from 'store/reducers/account.slice';
