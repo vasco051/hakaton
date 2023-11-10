@@ -1,6 +1,7 @@
-import { InputHTMLAttributes } from 'react';
+import {InputHTMLAttributes} from 'react';
 
 export interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  wrapperClassName?: string;
+	label?: string;
+	wrapperClassName?: string;
+	withError?: boolean
 }

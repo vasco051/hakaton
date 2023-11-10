@@ -1,71 +1,78 @@
-import { FC } from 'react';
-import { useFormik } from 'formik';
-import { Link, useNavigate } from 'react-router-dom';
+import {FC} from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import {SubmitHandler, useForm} from "react-hook-form";
 
-import { useAppDispatch } from 'hooks/redux';
-import Button from 'components/UI-kit/Buttons/Button.tsx';
-import TextField from 'components/UI-kit/TextFields';
+import {useAppDispatch} from 'hooks/redux';
+import PageWrapper from "components/Layout/PageWrapper";
+import {TextField} from "components/UI-kit/TextFields";
+import {Button} from "components/UI-kit/Buttons";
 
-import { accountAPI } from 'services/accountService';
-import { TRegisterInfo } from 'models/TUser';
-import { staticLinks } from 'routes/routingLinks';
-import { setUser } from 'store/reducers/account.slice';
+import {accountAPI} from 'services/accountService';
+import {setUser} from 'store/reducers/account.slice';
+
+import {staticLinks} from 'routes/routingLinks';
+
+import {TRegisterInfo} from "models/TUser.ts";
 
 import styles from './styles.module.scss';
 
 const Authorization: FC = () => {
-  const [
-    authorization, {
-      data,
-      error,
-      isLoading
-    }
-  ] = accountAPI.useAuthorizationMutation();
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+	const dispatch = useAppDispatch();
+	const navigate = useNavigate();
+	const [makeAuthorization, {isLoading,}] = accountAPI.useAuthorizationMutation();
 
-  const formik = useFormik({
-    initialValues: {
-      login: '',
-      password: ''
-    } as TRegisterInfo,
-    onSubmit: (values, formikHelpers) => {
-      authorization(values);
-      formikHelpers.resetForm();
-    }
-  });
+	const {
+		handleSubmit,
+		register,
+		formState: {
+			errors
+		}
+	} = useForm<TRegisterInfo>({
+		defaultValues: {
+			login: '',
+			password: ''
+		}
+	})
 
-  if (!isLoading && data) {
-    localStorage.setItem('auth_token', data.key);
-    dispatch(setUser(data.user));
-    navigate(staticLinks.rooms);
-  }
+	const onSubmitForm: SubmitHandler<TRegisterInfo> = async data => {
+		const response = await makeAuthorization(data);
 
-  return (
-    <form onSubmit={formik.handleSubmit} className={styles.form}>
-      <h1>Авторизация</h1>
+		if ('data' in response) {
+			const {data} = response
 
-      <TextField
-        label="Введите логин"
-        name="login"
-        value={formik.values.login}
-        onChange={formik.handleChange}
-      />
+			localStorage.setItem('auth_token', data.key);
+			dispatch(setUser(data.user));
+			navigate(staticLinks.rooms);
+		}
+	}
+	return (
+		<PageWrapper className={styles.main}>
+			<div className={styles.wrapper}>
+				<form onSubmit={handleSubmit(onSubmitForm)} className={styles.form}>
+					<h1>Авторизация</h1>
 
-      <TextField
-        label="Введите пароль"
-        name="password"
-        value={formik.values.password}
-        onChange={formik.handleChange}
-      />
+					<TextField
+						id='login'
+						label="Введите логин"
+						withError={!!errors.login}
+						{...register('login', {required: true})}
+					/>
 
-      {error && <span>Произошла ошибка</span>}
+					<TextField
+						id='password'
+						label="Введите пароль"
+						type='password'
+						withError={!!errors.password}
+						{...register('password', {required: true})}
+					/>
 
-      <Button type="submit">Войти</Button>
+					<Button type="submit" disabled={isLoading}>Войти</Button>
 
-      <Link className={styles.redirect} to={staticLinks.registration}>Регистрация</Link>
-    </form>
-  );
+					<Link className={styles.redirect} to={staticLinks.registration}>Регистрация</Link>
+				</form>
+			</div>
+		</PageWrapper>
+	);
 };
 
 export default Authorization;

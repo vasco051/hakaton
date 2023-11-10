@@ -1,8 +1,8 @@
 import { FC } from 'react';
+import clsx from 'clsx';
 
 import Portal from '../Portal';
 import { PopupProps } from '../types';
-import clsx from 'clsx';
 
 import styles from './Popup.module.scss';
 

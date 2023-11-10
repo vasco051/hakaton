@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 import {staticLinks} from "routes/routingLinks.ts";
 
@@ -6,6 +6,15 @@ import IcLogo from "assets/images/global/logo_pink.svg"; // todo
 import styles from './styles.module.scss'
 
 export const Footer = () => {
+	const location = useLocation();
+
+	const footerBanList = [
+		staticLinks.authorization,
+		staticLinks.registration
+	];
+
+	if (footerBanList.includes(location.pathname)) return null
+
 	return (
 		<footer className={styles.footer}>
 			<Link to={staticLinks.main} className={styles.logoWrapper}>

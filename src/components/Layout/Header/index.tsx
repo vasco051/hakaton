@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import {clsx} from "clsx";
 
 import {useAppDispatch, useAppSelector} from "hooks/redux.ts";
-import {Button, LinkButton} from "components/UI-kit/Buttons";
 
 import {logout} from "store/reducers/account.slice.ts";
 import {staticLinks} from "routes/routingLinks.ts";
@@ -49,13 +48,13 @@ export const Header = () => {
 				</Link>
 
 				{isAuth ? (
-					<Button onClick={() => dispatch(logout())} className={styles.link}>
+					<button onClick={() => dispatch(logout())} className={styles.link}>
 						Выйти
-					</Button>
+					</button>
 				) : (
-					<LinkButton to={staticLinks.authorization} className={styles.link}>
+					<Link to={staticLinks.authorization} className={styles.link}>
 						Войти
-					</LinkButton>
+					</Link>
 				)}
 			</div>
 		</header>

@@ -1,19 +1,19 @@
-import {FC} from 'react';
+import {FC, forwardRef} from 'react';
 import clsx from 'clsx';
 
 import {TextFieldProps} from './types.ts';
 
 import styles from './styles.module.scss';
 
-export const TextField: FC<TextFieldProps> = ({
-																				 id,
-																				 label,
-																				 disabled,
-																				 className = '',
-																				 wrapperClassName = '',
-																				 ...props
-																			 }) => {
-
+export const TextField: FC<TextFieldProps> = forwardRef(({
+																													 id,
+																													 label,
+																													 withError,
+																													 disabled,
+																													 className = '',
+																													 wrapperClassName = '',
+																													 ...props
+																												 }, ref) => {
 	const wrapperStyle = clsx(styles.wrapper, {
 		[wrapperClassName]: !!wrapperClassName,
 		[styles.disabled]: !!disabled,
@@ -21,6 +21,7 @@ export const TextField: FC<TextFieldProps> = ({
 
 	const textFieldStyle = clsx(styles.input, {
 		[className]: !!className,
+		[styles.withError]: !!withError
 	});
 
 	return (
@@ -35,9 +36,11 @@ export const TextField: FC<TextFieldProps> = ({
 				id={id}
 				disabled={disabled}
 				className={textFieldStyle}
+				// @ts-ignore
+				ref={ref}
 				{...props}
 			/>
 
 		</div>
 	);
-};
+});
