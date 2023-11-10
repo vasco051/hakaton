@@ -8,6 +8,8 @@ import { questionAPI } from 'services/questionService';
 import { setUserBalance } from 'store/reducers/user.slice';
 import { setColor } from '../../store/reducers/card.slice';
 
+import styles from './styles.module.scss'
+import {clsx} from "clsx";
 const Question: FC = () => {
   const [ isOpenModal, setIsOpenModal ] = useState(false);
   const {
@@ -17,13 +19,13 @@ const Question: FC = () => {
   } = useAppSelector(state => state.questionReducer);
   const { refetch: refetchQuesion } = questionAPI.useFetchQuestionQuery();
   const [ checkAnswer, { data: checkResponse } ] = questionAPI.useFetchCheckAnswerMutation();
-
+  const [visibleAns,SetVisibleAns] = useState(false)
   const dispatch = useAppDispatch();
   const { id: idRoom } = useParams();
 
   useEffect(() => {
     refetchQuesion();
-  }, [ idCurrentCard ]);
+  },  [idCurrentCard, refetchQuesion]);
 
   useEffect(() => {
     if (question) {
@@ -34,11 +36,18 @@ const Question: FC = () => {
   if (!question || isFirstLoading) return null;
 
   const onCheckAnswer = (answerId: number) => {
+
     checkAnswer({
       idRoom: parseInt(idRoom!),
       answer_id: answerId,
       card_id: idCurrentCard!
     });
+    SetVisibleAns(true)
+    setTimeout(()=>{
+      setIsOpenModal(false)
+      SetVisibleAns(false)
+    },2000)
+
   };
 
   if (checkResponse) {
@@ -68,13 +77,24 @@ const Question: FC = () => {
 
   return (
     <section>
-      <Popup isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
-        <h4>{question.title}</h4>
+      <Popup className={styles.popover} isOpen={isOpenModal} onClose={() => setIsOpenModal(false)}>
+        <h4 className={styles.title}>{question.title}</h4>
+        <ul className={styles.answers}>
+          {visibleAns ? (question.answers.map(answer => {
+              const classes = clsx(
+                [styles.answer],
+                {
+                  [styles.correct]: answer.is_correct,
+                  [styles.incorrect]: !answer.is_correct,
+                }
+              );
+              return(<li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={classes}>{answer.title}</li>)
+            }
+            )) :(question.answers.map(answer =>
+              (<li key={answer.id} onClick={() => onCheckAnswer(answer.id)} className={styles.answer}>{answer.title}</li>)
 
-        <ul>
-          {question.answers.map(answer => (
-            <li key={answer.id} onClick={() => onCheckAnswer(answer.id)}>{answer.title}</li>
-          ))}
+
+            ))}
         </ul>
       </Popup>
     </section>

@@ -25,7 +25,9 @@
   width: 115px;
   height: 115px;
   background: #fff;
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
   .image {
     object-fit: fill;
     width: 100%;
@@ -91,4 +93,21 @@
     width: 115px;
     height: 65px;
   }
+}
+.textCorner,.text{
+  color: black;
+  text-align: center;
+}
+.imageWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.textCorner{
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: center;
+
 }

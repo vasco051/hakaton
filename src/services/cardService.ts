@@ -12,7 +12,8 @@ export const cardAPI = createApi({
 	endpoints: build => ({
 		fetchAllCards: build.query<TBoardCellResponse, number>({
 			query: (id: number) => ({
-				url: `/rooms/${id}/cards/`
+				url: `/rooms/${id}/cards/`,
+				headers: { Authorization: `Token ${localStorage.getItem('auth_token')}` }
 			})
 		})
 	})

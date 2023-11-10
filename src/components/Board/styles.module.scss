@@ -25,6 +25,9 @@
 
 .top {
   align-items: flex-end;
+  p{
+
+  }
 }
 
 .center {
@@ -41,6 +44,9 @@
     width: 593px;
     height: 593px;
     background: #150050;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .right {
