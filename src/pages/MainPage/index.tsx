@@ -5,10 +5,10 @@ import {LinkButton} from "components/UI-kit/Buttons";
 
 import {staticLinks} from "routes/routingLinks.ts";
 
-import ImgHelmet from 'assets/images/global/helmet.png';
+import ImgHelmet from 'assets/icons/global/helmet.png';
 import styles from './styles.module.scss';
 
-const MainPage: FC = () => {
+export const MainPage: FC = () => {
 	return (
 		<PageWrapper>
 			<section className={styles.mainSection}>
@@ -44,5 +44,3 @@ const MainPage: FC = () => {
 		</PageWrapper>
 	);
 };
-
-export default MainPage;

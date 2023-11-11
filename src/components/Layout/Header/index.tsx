@@ -7,7 +7,7 @@ import {useAppDispatch, useAppSelector} from "hooks/redux.ts";
 import {logout} from "store/reducers/account.slice.ts";
 import {staticLinks} from "routes/routingLinks.ts";
 
-import IcLogo from "assets/images/global/logo.svg";
+import IcLogo from "assets/icons/global/logo.svg";
 import styles from './styles.module.scss'
 
 export const Header = () => {

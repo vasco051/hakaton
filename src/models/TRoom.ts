@@ -3,11 +3,6 @@ export type TRoomCreate = {
 	title: string
 }
 
-export type TAllRoomResponse = {
-	rooms: TRoomResponse[]
-	id: number
-}
-
 export type TRoomCreateResponse = {
 	count_players: number
 	count_players_now: number
@@ -15,13 +10,15 @@ export type TRoomCreateResponse = {
 	users: [] | null
 }
 
-export type TRoomResponse = {
+export type TAllRoomsResponse = {
 	room_id_to_current_user: number | null
-	rooms: {
-		count_players: number
-		count_players_now: number
-		id: number
-		title: string
-		in_room: boolean
-	}[]
+	rooms: TRoom[]
+}
+
+export type TRoom = {
+	count_players: number
+	count_players_now: number
+	id: number
+	title: string
+	in_room: boolean
 }

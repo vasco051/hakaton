@@ -3,11 +3,11 @@ import {useLocation, useParams} from 'react-router-dom';
 
 
 import { useAppSelector } from 'hooks/redux';
-import { BoardCell, CellVariant } from 'components/BoardCell';
 
 import { cardAPI } from 'services/cardService.ts';
 
 import styles from './styles.module.scss';
+import {BoardCell, CellVariant} from "../BoardCell";
 
 interface IBoardProps {
   slot: ReactNode

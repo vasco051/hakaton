@@ -1,56 +1,66 @@
-import { FC, useEffect } from 'react';
-import {Link, useLocation, useNavigate} from 'react-router-dom';
+import {FC, useEffect} from 'react';
+import {useNavigate} from "react-router-dom";
 
-import Button from 'components/UI-kit/Buttons/Button.tsx';
+import PageWrapper from "components/Layout/PageWrapper";
+import {LinkButton} from "components/UI-kit/Buttons";
+import {RoomItem} from "components/UI/RoomItem";
 
-import { roomAPI } from 'services/roomService';
-import {dynamicLinks, staticLinks} from 'routes/routingLinks';
+import {roomAPI} from 'services/roomService';
+import {dynamicLinks, staticLinks} from "routes/routingLinks.ts";
 
-import styles from './styles.module.scss';
+import {TRoom} from "models/TRoom.ts";
+
+import styles from './styles.module.scss'
+
+// const rooms: TRoom[] = [
+// 	{id: 1, in_room: true, count_players: 3, count_players_now: 1, title: 'ЦПС'},
+// 	{id: 2, in_room: false, count_players: 3, count_players_now: 1, title: 'Комната для смелых'},
+// 	{id: 3, in_room: false, count_players: 3, count_players_now: 1, title: 'Хакатон'},
+// 	{id: 4, in_room: false, count_players: 3, count_players_now: 1, title: 'Кибер-защитники'},
+// ]
 
 const Rooms: FC = () => {
-  const {
-    data: roomsResponse,
-    refetch
-  } = roomAPI.useFetchAllRoomsQuery('',
-    {pollingInterval: 1000}
-  );
-  const navigate = useNavigate();
-  if(roomsResponse!==undefined){
-    if(roomsResponse.room_id_to_current_user!==null){
+	const [makeJoinToRoom] = roomAPI.useJoinToRoomMutation()
+	const {data: roomsResponse} = roomAPI.useFetchAllRoomsQuery(null, {
+		pollingInterval: 1000
+	});
 
-        navigate(dynamicLinks.room(roomsResponse.room_id_to_current_user));
-    }
-  }
+	const navigate = useNavigate()
 
-  const [ joinToRome ] = roomAPI.useJoinToRoomMutation();
+	useEffect(() => {
+		if (roomsResponse && roomsResponse.room_id_to_current_user) {
+			navigate(dynamicLinks.room(roomsResponse.room_id_to_current_user));
+		}
+	}, [roomsResponse])
 
-  const location = useLocation();
+	const onJoinToRoom = (room: TRoom) => {
+		makeJoinToRoom(room.id)
+	}
 
-  useEffect(() => {
-    refetch();
-  }, [ location.pathname ]);
+	return (
+		<PageWrapper>
+			<div className={styles.wrapper}>
+				<div className={styles.content}>
+					<section className={styles.header}>
+						<h2>Ожидают игры</h2>
+						<LinkButton to={staticLinks.roomCreate}>Создать игру</LinkButton>
+					</section>
 
-  return (
-    <div className={styles.rooms}>
-      <div className={styles.header}>
-        <h2>Ожидают игры</h2>
-        <Link to={staticLinks.roomCreate}><Button>Создать игру</Button></Link>
-      </div>
-
-      <ul className={styles.list}>
-        {roomsResponse?.rooms.map(room => (
-          <li className={styles.item} key={room.id}>
-            <span className={styles.title}>{room.title}</span>
-            <div className={styles.right}>
-              <span>{room.count_players_now} / {room.count_players}</span>
-              <Button onClick={() => joinToRome(room.id)}>Присоединиться</Button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+					<ul className={styles.list}>
+						{roomsResponse?.rooms.length
+							? (
+								roomsResponse?.rooms.map(room => (
+									<RoomItem room={room} onJoinToRoom={onJoinToRoom}/>
+								))
+							) : (
+								<li className={styles.emptyItem}>Готовых комнат ещё нет...</li>
+							)
+						}
+					</ul>
+				</div>
+			</div>
+		</PageWrapper>
+	);
 };
 
 export default Rooms;

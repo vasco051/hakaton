@@ -1,4 +1,4 @@
-import { FC } from 'react';
+	import { FC } from 'react';
 import styles from './styles.module.scss';
 import IcDice1 from '../../../assets/images/dice/dice1.svg';
 import IcDice2 from '../../../assets/images/dice/dice2.svg';

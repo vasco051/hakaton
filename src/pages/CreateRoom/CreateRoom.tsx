@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 import Button from 'components/UI-kit/Buttons/Button.tsx';
 
-import { roomAPI } from 'services/roomService';
-import { staticLinks } from 'routes/routingLinks';
+import { roomAPI } from 'services/roomService.ts';
+import { staticLinks } from 'routes/routingLinks.ts';
 import TextField from '../../components/UI-kit/TextFields';
 
-import styles from './styles.module.scss';
+import styles from '../Rooms/styles.module.scss';
 
 
 const CreateRoom: FC = () => {

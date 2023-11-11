@@ -4,7 +4,6 @@ import {Footer} from "components/Layout/Footer";
 
 import {accountAPI} from 'services/accountService';
 
-
 function App() {
 	accountAPI.useLoginQuery();
 
