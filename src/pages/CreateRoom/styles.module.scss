@@ -1,0 +1,63 @@
+@import "src/assets/styles/templates";
+
+.wrapper {
+  @extend %wrapper;
+}
+
+.content {
+  @include flex-col-gap(50px);
+  padding: 40px 0;
+}
+
+.title {
+  color: #FFF;
+  font-size: 50px;
+  font-weight: 700;
+
+  padding: 30px 0;
+  border-bottom: 1px solid #A066BF;
+}
+
+.form {
+  @include flex-col-gap(45px);
+
+  input {
+    max-width: 600px;
+  }
+
+  .block {
+    @include flex-col-gap(8px);
+
+    span {
+      color: #FFF;
+      font-size: 24px;
+    }
+  }
+
+  .listPlayers {
+    @include flex-row-gap(10px);
+
+    .item {
+      color: #FFF;
+      padding: 15px 25px;
+      border: 1px solid #A066BF;
+      background: #150050;
+      font-size: 18px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .isActive{
+      background: #610094;
+    }
+  }
+
+  hr {
+    height: 1px;
+    background: #A066BF;
+  }
+
+  button {
+    width: max-content;
+  }
+}

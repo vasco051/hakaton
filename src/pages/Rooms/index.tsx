@@ -1,7 +1,7 @@
 import {FC, useEffect} from 'react';
 import {useNavigate} from "react-router-dom";
 
-import PageWrapper from "components/Layout/PageWrapper";
+import {PageWrapper} from "components/Layout/PageWrapper";
 import {LinkButton} from "components/UI-kit/Buttons";
 import {RoomItem} from "components/UI/RoomItem";
 
@@ -19,7 +19,7 @@ import styles from './styles.module.scss'
 // 	{id: 4, in_room: false, count_players: 3, count_players_now: 1, title: 'Кибер-защитники'},
 // ]
 
-const Rooms: FC = () => {
+export const Rooms: FC = () => {
 	const [makeJoinToRoom] = roomAPI.useJoinToRoomMutation()
 	const {data: roomsResponse} = roomAPI.useFetchAllRoomsQuery(null, {
 		pollingInterval: 1000
@@ -62,5 +62,3 @@ const Rooms: FC = () => {
 		</PageWrapper>
 	);
 };
-
-export default Rooms;

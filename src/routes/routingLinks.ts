@@ -9,7 +9,7 @@ export const staticLinks = {
 
   // authorized
   rooms: '/rooms',
-  roomCreate: '/room_create',
+  roomCreate: '/rooms/create',
   room: '/rooms/:id'
 };
 

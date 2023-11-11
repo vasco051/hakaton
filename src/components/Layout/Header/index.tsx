@@ -14,10 +14,10 @@ export const Header = () => {
 	const [prevScrollPos, setPrevScrollPos] = useState<number>(window.scrollY);
 	const [isVisible, setIsVisible] = useState<boolean>(true);
 
-	const {user} = useAppSelector(state => state.accountReducer);
+	const {account} = useAppSelector(state => state.accountReducer);
 	const dispatch = useAppDispatch();
 
-	const isAuth = !!user
+	const isAuth = !!account
 
 	useEffect(() => {
 		const handleScroll = () => {

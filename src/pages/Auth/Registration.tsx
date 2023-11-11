@@ -3,7 +3,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {SubmitHandler, useForm} from "react-hook-form";
 
 import {useAppDispatch} from 'hooks/redux';
-import PageWrapper from "components/Layout/PageWrapper";
+import {PageWrapper} from "components/Layout/PageWrapper";
 import {TextField} from "components/UI-kit/TextFields";
 import {Button} from "components/UI-kit/Buttons";
 

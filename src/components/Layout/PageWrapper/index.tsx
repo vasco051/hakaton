@@ -8,7 +8,7 @@ interface IPageWrapper {
 	className?: string
 }
 
-const PageWrapper: FC<IPageWrapper> = ({className = '', children}) => {
+export const PageWrapper: FC<IPageWrapper> = ({className = '', children}) => {
 	const wrapperClasses = clsx(styles.pageWrapper, {
 		[className]: !!className
 	})
@@ -17,5 +17,3 @@ const PageWrapper: FC<IPageWrapper> = ({className = '', children}) => {
 		<main className={wrapperClasses}>{children}</main>
 	);
 };
-
-export default PageWrapper;

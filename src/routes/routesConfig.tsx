@@ -1,6 +1,7 @@
 import {Authorization, Registration} from 'pages/Auth';
 import {Rooms} from "pages/Rooms";
 import {MainPage} from "pages/MainPage";
+import {CreateRoom} from "pages/CreateRoom";
 
 import {staticLinks} from './routingLinks';
 
@@ -12,10 +13,6 @@ export const publicRoutes = [
 	{
 		path: staticLinks.main,
 		element: <MainPage/>
-	},
-	{
-		path: staticLinks.rooms,
-		element: <Rooms/>
 	},
 ];
 
@@ -31,13 +28,16 @@ export const unauthorizedRoutes = [
 ];
 
 export const authorizedRoutes = [
-
+	{
+		path: staticLinks.rooms,
+		element: <Rooms/>
+	},
+	{
+		path: staticLinks.roomCreate,
+		element: <CreateRoom/>
+	}
 	// {
 	//   path: staticLinks.room,
 	//   element: <Room/>
 	// },
-	// {
-	//   path: staticLinks.roomCreate,
-	//   element: <CreateRoom/>
-	// }
 ];
