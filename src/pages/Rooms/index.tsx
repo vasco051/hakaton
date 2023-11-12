@@ -12,13 +12,6 @@ import {TRoom} from "models/TRoom.ts";
 
 import styles from './styles.module.scss'
 
-// const rooms: TRoom[] = [
-// 	{id: 1, in_room: true, count_players: 3, count_players_now: 1, title: 'ЦПС'},
-// 	{id: 2, in_room: false, count_players: 3, count_players_now: 1, title: 'Комната для смелых'},
-// 	{id: 3, in_room: false, count_players: 3, count_players_now: 1, title: 'Хакатон'},
-// 	{id: 4, in_room: false, count_players: 3, count_players_now: 1, title: 'Кибер-защитники'},
-// ]
-
 export const Rooms: FC = () => {
 	const [makeJoinToRoom] = roomAPI.useJoinToRoomMutation()
 	const {data: roomsResponse} = roomAPI.useFetchAllRoomsQuery(null, {

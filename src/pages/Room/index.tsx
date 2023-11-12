@@ -1,72 +1,38 @@
 import {FC, useEffect} from 'react';
-import {useParams} from 'react-router-dom';
+import {useLocation, useParams} from 'react-router-dom';
 
-import {UserList} from 'components/UserList';
-import {useAppDispatch, useAppSelector} from 'hooks/redux.ts';
+import {useAppSelector} from "hooks/redux.ts";
+import {PageWrapper} from "components/Layout/PageWrapper";
+import {Board} from "components/UI/Board";
+import {UserList} from "components/UI/User";
+import {Point} from "components/UI/Point";
 
-import Question from 'components/Queston/Question';
-import PlayerIcon from 'components/PlayerIcon';
-import {Board} from 'components/Board';
-import Button from 'components/UI-kit/Buttons/Button.tsx';
-import {Dice} from 'components/dice/ui/Dice.tsx';
-
-import {userAPI} from 'services/userService';
-import {questionAPI} from 'services/questionService';
-
-import {generateRandomDice, setIsVisible} from 'store/reducers/diceSlice.ts';
-import {setIdCurrentCard, setLoading} from 'store/reducers/question.slice';
+import {cardAPI} from "services/cardService.ts";
+import {userAPI} from "services/userService.ts";
 
 import styles from './styles.module.scss';
 
+export const Room: FC = () => {
+	const {id: idRoom} = useParams();
+	const location = useLocation()
+	const {users} = useAppSelector(state => state.userReducer)
+	const {cards} = useAppSelector(state => state.cardReducer)
 
-const Room: FC = () => {
-	const {id} = useParams();
-	const dispatch = useAppDispatch();
-
-	const {
-		sumDice,
-		isVisible
-	} = useAppSelector(state => state.diceReducer);
-	const {users} = useAppSelector(state => state.userReducer);
-
-	const [fetchStepUser, {data: stepInfo}] = userAPI.useFetchStepUserMutation();
-	const {refetch: refetchQuesion} = questionAPI.useFetchQuestionQuery();
-
-	userAPI.useFetchAllUsersQuery(parseInt(id!));
-
-	const doDice = () => {
-		dispatch(setLoading(false));
-		dispatch(setIsVisible(true));
-		dispatch(generateRandomDice());
-		setTimeout(() => {
-			dispatch(setIsVisible(false));
-		}, 1000);
-	};
+	const {refetch: refetchCards} = cardAPI.useFetchAllCardsQuery(parseInt(idRoom!));
+	const {refetch: refetchUsers} = userAPI.useFetchAllUsersQuery(parseInt(idRoom!));
 
 	useEffect(() => {
-		fetchStepUser(sumDice);
-	}, [sumDice]);
-
-	useEffect(() => {
-		if (stepInfo) {
-			refetchQuesion();
-			dispatch(setIdCurrentCard(stepInfo.card_id));
-		}
-	}, [stepInfo]);
+		refetchUsers()
+		refetchCards()
+	}, [location.pathname]);
 
 	return (
-		<section className={styles.room}>
-			{isVisible && <Dice/>}
-			{users.map(user => (
-				<PlayerIcon position={user.position + 1} key={user.id}/>
-			))}
-			<Question/>
-			<UserList users={users}/>
-			<Board slot={
-				<Button onClick={() => doDice()}>Бросить кубики</Button>
-			}/>
-		</section>
+		<PageWrapper>
+			<div className={styles.wrapper}>
+				{cards && users.map(user => <Point color={user.color} position={user.position} key={user.id}/>)}
+				<UserList users={users}/>
+				<Board/>
+			</div>
+		</PageWrapper>
 	);
 };
-
-export default Room;

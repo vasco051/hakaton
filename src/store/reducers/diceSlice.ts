@@ -9,7 +9,7 @@ interface ISliceState {
 
 const initialState: ISliceState = {
 	sumDice: 0,
-	random: [ 0, 0 ],
+	random: [ 1, 1 ],
 	isVisible: false
 }
 

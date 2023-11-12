@@ -1,55 +1,47 @@
-import { FC, ReactNode, useEffect } from 'react';
-import {useLocation, useParams} from 'react-router-dom';
+import {FC} from 'react';
 
-
-import { useAppSelector } from 'hooks/redux';
-
-import { cardAPI } from 'services/cardService.ts';
+import {useAppSelector} from 'hooks/redux';
+import {BoardCell, CellVariant} from "./BoardCell";
+import {CenterSlot} from "./CenterSlot";
+import {PassSlot} from "./PassSlot";
 
 import styles from './styles.module.scss';
-import {BoardCell, CellVariant} from "../BoardCell";
 
-interface IBoardProps {
-  slot: ReactNode
-}
+export const Board: FC = () => {
+	const {cards} = useAppSelector(state => state.cardReducer)
+	const {walkingUser} = useAppSelector(state => state.userReducer)
+	const {account} = useAppSelector(state => state.accountReducer)
 
-export const Board: FC<IBoardProps> = ({slot}) => {
-  const { id } = useParams();
-  const location = useLocation()
+	const isMyWalk = walkingUser?.id === account?.id
 
-  const {refetch} = cardAPI.useFetchAllCardsQuery(parseInt(id!));
-  const {cards} = useAppSelector(state => state.cardReducer)
+	return (
+		<section className={styles.board}>
+			<ul className={styles.top}>
+				{cards && <BoardCell variant={CellVariant.CORNER} cell={cards.CORNER[0]}/>}
+				{cards && cards.TOP.map(item => <BoardCell variant={CellVariant.TOP} cell={item} key={item.id}/>)}
+				{cards && <BoardCell variant={CellVariant.CORNER} cell={cards.CORNER[1]}/>}
+			</ul>
 
-  useEffect(() => {
-    refetch()
-  }, [location.pathname]);
+			<section className={styles.center}>
+				<ul className={styles.left}>
+					{cards && cards.LEFT.map(item => <BoardCell variant={CellVariant.LEFT} cell={item} key={item.id}/>)}
+				</ul>
+				<div className={styles.centerSlot}>
+					{isMyWalk
+						? <CenterSlot/>
+						: <PassSlot/>
+					}
+				</div>
+				<ul className={styles.right}>
+					{cards && cards.RIGHT.map(item => <BoardCell variant={CellVariant.RIGHT} cell={item} key={item.id}/>)}
+				</ul>
+			</section>
 
-
-  return (
-    <section className={styles.board}>
-      <ul className={styles.top}>
-        {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[0]}/>}
-        {cards && cards.TOP.map(item => <BoardCell variant={CellVariant.TOP} item={item}/>)}
-        {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[1]}/>}
-      </ul>
-
-      <section className={styles.center}>
-        <ul className={styles.left}>
-          {cards &&cards.LEFT.map(item => <BoardCell variant={CellVariant.LEFT} item={item }/>)}
-        </ul>
-        <div className={styles.centerSlot}>
-          {slot}
-        </div>
-        <ul className={styles.right}>
-          {cards &&cards.RIGHT.map(item => <BoardCell variant={CellVariant.RIGHT} item={item }/>)}
-        </ul>
-      </section>
-
-      <ul className={styles.bottom}>
-        {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[2]}/>}
-        {cards && cards.BOTTOM.map(item => <BoardCell variant={CellVariant.BOTTOM} item={item }/>)}
-        {cards && <BoardCell variant={CellVariant.CORNER} item={cards.CORNER[3]}/>}
-      </ul>
-    </section>
-  );
+			<ul className={styles.bottom}>
+				{cards && <BoardCell variant={CellVariant.CORNER} cell={cards.CORNER[2]}/>}
+				{cards && cards.BOTTOM.map(item => <BoardCell variant={CellVariant.BOTTOM} cell={item} key={item.id}/>)}
+				{cards && <BoardCell variant={CellVariant.CORNER} cell={cards.CORNER[3]}/>}
+			</ul>
+		</section>
+	);
 };

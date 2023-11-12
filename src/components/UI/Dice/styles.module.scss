@@ -1,0 +1,53 @@
+@import "src/assets/styles/templates";
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: back 0.2s linear;
+}
+
+@keyframes back {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.content {
+  @include flex-row-gap(20px);
+}
+
+.cube {
+  width: 100px;
+  height: 100px;
+
+  border: 1px solid black;
+
+  transform-style: preserve-3d;
+  animation: spin 0.5s linear;
+
+  img {
+    width: 100%;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+  }
+}
