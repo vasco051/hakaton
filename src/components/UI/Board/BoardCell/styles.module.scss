@@ -1,13 +1,16 @@
-@import "../../../../assets/styles/templates";
+@import "src/assets/styles/templates";
 
 .cell {
+  .backGroundWrapper {
+    background: #fff;
+  }
+
   .costWrapper, .textWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
 
     overflow: hidden;
-    background: #fff;
   }
 
   .cost {
@@ -85,7 +88,7 @@
     height: 65px;
   }
 
-  .cost{
+  .cost {
     transform: rotate(90deg);
   }
 
@@ -118,7 +121,7 @@
     height: 65px;
   }
 
-  .cost{
+  .cost {
     transform: rotate(-90deg);
   }
 

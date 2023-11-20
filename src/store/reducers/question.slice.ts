@@ -8,7 +8,7 @@ interface ISliceState {
 }
 
 const initialState: ISliceState = {
-	idCurrentCard: 3,
+	idCurrentCard: null,
 	question: null
 };
 
