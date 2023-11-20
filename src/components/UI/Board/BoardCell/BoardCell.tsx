@@ -23,7 +23,11 @@ export const BoardCell: FC<IBoardCellProps> = ({variant, cell}) => {
 	});
 
 	const styleWithColor = {
-		background: cell.color || ''
+		background: `${cell.color}90` || '',
+	}
+
+	const textStyles = {
+		color: cell.color ? 'white' : 'black'
 	}
 
 	if (variant === CellVariant.CORNER) return (
@@ -35,12 +39,16 @@ export const BoardCell: FC<IBoardCellProps> = ({variant, cell}) => {
 	return (
 		<li className={cellClasses}>
 			{cell.cost && (
-				<div className={styles.costWrapper} style={styleWithColor}>
-					<span className={styles.cost}>{cell.cost}&nbsp;₽</span>
+				<div className={styles.backGroundWrapper}>
+					<div className={styles.costWrapper} style={styleWithColor}>
+						<span className={styles.cost} style={textStyles}>{cell.cost}&nbsp;₽</span>
+					</div>
 				</div>
 			)}
-			<div className={styles.textWrapper} style={styleWithColor} id={cellId}>
-				<p className={styles.text}>{cell.title}</p>
+			<div className={styles.backGroundWrapper} id={cellId}>
+				<div className={styles.textWrapper} style={styleWithColor}>
+					<p className={styles.text} style={textStyles}>{cell.title}</p>
+				</div>
 			</div>
 		</li>
 	);

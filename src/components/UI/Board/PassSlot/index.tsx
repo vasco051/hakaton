@@ -9,7 +9,7 @@ export const PassSlot: FC = () => {
 
 	return (
 		<section className={styles.wrapper}>
-			В данный момент ход {walkingUser?.username}...
+			<h2 className={styles.title}>В данный момент ход {walkingUser?.username}...</h2>
 		</section>
 	);
 };

@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { TAccountInfo } from 'models/TUser';
-import { accountAPI } from '../../services/accountService';
+import { accountAPI } from 'services/accountService';
 
+import { TAccountInfo } from 'models/TUser';
 
 interface ISliceState {
   account: TAccountInfo | null;

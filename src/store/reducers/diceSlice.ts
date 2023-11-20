@@ -1,15 +1,12 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-
 interface ISliceState {
-	sumDice: number,
 	isVisible: boolean,
-	random: number[],
+	values: [number, number] | null,
 }
 
 const initialState: ISliceState = {
-	sumDice: 0,
-	random: [ 1, 1 ],
+	values: null,
 	isVisible: false
 }
 
@@ -20,12 +17,14 @@ export const diceSlice = createSlice({
 		generateRandomDice(state) {
 			const min = 1;
 			const max = 7;
-			state.random = [ Math.floor(Math.random() * (max - min) + min), Math.floor(Math.random() * (max - min) + min) ];
-			state.sumDice = state.random[0] + state.random[1];
+			state.values = [
+				Math.floor(Math.random() * (max - min) + min),
+				Math.floor(Math.random() * (max - min) + min)
+			];
 		},
 
-		setIsVisible(state,action: PayloadAction<boolean>){
-			state.isVisible = action.payload
+		setIsVisible(state, {payload: isVisible}: PayloadAction<boolean>) {
+			state.isVisible = isVisible
 		}
 	},
 })
