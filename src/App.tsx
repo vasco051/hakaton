@@ -5,15 +5,15 @@ import {Footer} from "components/Layout/Footer";
 import {accountAPI} from 'services/accountService';
 
 function App() {
-	accountAPI.useLoginQuery();
+  accountAPI.useLoginQuery();
 
-	return (
-		<div className='App'>
-			<Header/>
-			<AppRouter/>
-			<Footer/>
-		</div>
-	);
+  return (
+    <div className='App'>
+      <Header/>
+      <AppRouter/>
+      <Footer/>
+    </div>
+  );
 }
 
 export default App;

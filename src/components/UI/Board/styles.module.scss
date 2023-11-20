@@ -18,7 +18,8 @@
     @include flex-col-gap(1px);
 
   }
-  .left{
+
+  .left {
     flex-direction: column-reverse;
   }
 }

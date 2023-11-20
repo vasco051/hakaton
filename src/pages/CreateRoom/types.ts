@@ -1,5 +1,5 @@
 export type TCreateRoomFormState = {
-	title: string
+  title: string
 }
 
 export const countPlayers = [2, 3, 4, 5];

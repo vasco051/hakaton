@@ -5,18 +5,18 @@
   justify-content: space-between;
 }
 
-.right{
+.right {
   @include flex-row-gap(40px);
   align-items: center;
 }
 
-.title{
+.title {
   color: #FFF;
   font-size: 40px;
   font-weight: 500;
 }
 
-.countPlayers{
+.countPlayers {
   color: #A066BF;
   font-size: 40px;
   font-weight: 500;

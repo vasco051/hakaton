@@ -22,8 +22,7 @@ export class WebSocketClient {
     this.socket.onclose = (event) => {
       if (event.wasClean) {
         console.log('Соединение закрыто чисто');
-      }
-      else {
+      } else {
         console.error('Соединение прервано');
       }
       console.log('Код закрытия: ' + event.code + ' Причина закрытия: ' + event.reason);
@@ -37,8 +36,7 @@ export class WebSocketClient {
   send(data: any) {
     if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       this.socket.send(data);
-    }
-    else {
+    } else {
       console.error('WebSocket соединение не установлено.');
     }
   }

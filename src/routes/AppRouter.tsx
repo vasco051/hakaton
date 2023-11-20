@@ -6,21 +6,21 @@ import {useAppSelector} from 'hooks/redux';
 import {authorizedRoutes, publicRoutes, unauthorizedRoutes} from './routesConfig';
 
 const AppRouter: FC = () => {
-	const {account} = useAppSelector(state => state.accountReducer);
+  const {account} = useAppSelector(state => state.accountReducer);
 
-	const routes = [...publicRoutes];
+  const routes = [...publicRoutes];
 
-	account
-		? routes.push(...authorizedRoutes)
-		: routes.push(...unauthorizedRoutes);
+  account
+    ? routes.push(...authorizedRoutes)
+    : routes.push(...unauthorizedRoutes);
 
-	return (
-		<Routes>
-			{routes.map(route => (
-				<Route path={route.path} element={route.element} key={route.path}/>
-			))}
-		</Routes>
-	);
+  return (
+    <Routes>
+      {routes.map(route => (
+        <Route path={route.path} element={route.element} key={route.path}/>
+      ))}
+    </Routes>
+  );
 };
 
 export default AppRouter;

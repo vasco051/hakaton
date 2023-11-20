@@ -15,68 +15,68 @@ import {countPlayers, TCreateRoomFormState} from "./types.ts";
 import styles from './styles.module.scss';
 
 export const CreateRoom: FC = () => {
-	const [currentCountPlayer, setCurrentCountPlayer] = useState(countPlayers[0]);
-	const [createRoom] = roomAPI.useCreateRoomMutation();
+  const [currentCountPlayer, setCurrentCountPlayer] = useState(countPlayers[0]);
+  const [createRoom] = roomAPI.useCreateRoomMutation();
 
-	const {register, handleSubmit} = useForm({
-		defaultValues: {
-			title: ''
-		}
-	})
+  const {register, handleSubmit} = useForm({
+    defaultValues: {
+      title: ''
+    }
+  })
 
-	const navigate = useNavigate()
+  const navigate = useNavigate()
 
-	const onSubmitForm: SubmitHandler<TCreateRoomFormState> = async data => {
-		const response = await createRoom({
-			count_players: currentCountPlayer,
-			...data
-		})
+  const onSubmitForm: SubmitHandler<TCreateRoomFormState> = async data => {
+    const response = await createRoom({
+      count_players: currentCountPlayer,
+      ...data
+    })
 
-		if ('data' in response) {
-			navigate(staticLinks.rooms)
-		}
-	}
+    if ('data' in response) {
+      navigate(staticLinks.rooms)
+    }
+  }
 
-	const getItemClasses = (value: number) => clsx(styles.item, {
-		[styles.isActive]: value === currentCountPlayer
-	});
+  const getItemClasses = (value: number) => clsx(styles.item, {
+    [styles.isActive]: value === currentCountPlayer
+  });
 
-	return (
-		<PageWrapper>
-			<div className={styles.wrapper}>
-				<div className={styles.content}>
-					<h1 className={styles.title}>Создание игры</h1>
+  return (
+    <PageWrapper>
+      <div className={styles.wrapper}>
+        <div className={styles.content}>
+          <h1 className={styles.title}>Создание игры</h1>
 
-					<form onSubmit={handleSubmit(onSubmitForm)} className={styles.form}>
-						<TextField
-							label="Название"
-							id='title'
-							{...register('title', {required: true})}
-						/>
+          <form onSubmit={handleSubmit(onSubmitForm)} className={styles.form}>
+            <TextField
+              label="Название"
+              id='title'
+              {...register('title', {required: true})}
+            />
 
-						<div className={styles.block}>
-							<span>Количество игроков</span>
-							<ul className={styles.listPlayers}>
-								{countPlayers.map(count => (
-									<li key={count}>
-										<button
-											type="button"
-											className={getItemClasses(count)}
-											onClick={() => setCurrentCountPlayer(count)}
-										>
-											{count}
-										</button>
-									</li>
-								))}
-							</ul>
-						</div>
+            <div className={styles.block}>
+              <span>Количество игроков</span>
+              <ul className={styles.listPlayers}>
+                {countPlayers.map(count => (
+                  <li key={count}>
+                    <button
+                      type="button"
+                      className={getItemClasses(count)}
+                      onClick={() => setCurrentCountPlayer(count)}
+                    >
+                      {count}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-						<hr/>
+            <hr/>
 
-						<Button type='submit'>Создать игру</Button>
-					</form>
-				</div>
-			</div>
-		</PageWrapper>
-	);
+            <Button type='submit'>Создать игру</Button>
+          </form>
+        </div>
+      </div>
+    </PageWrapper>
+  );
 };

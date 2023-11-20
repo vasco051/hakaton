@@ -1,10 +1,10 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/dist/query/react';
 
-import { TAccountInfo, TRegisterInfo, TRegisterResponse } from 'models/TUser';
+import {TAccountInfo, TRegisterInfo, TRegisterResponse} from 'models/TUser';
 
 export const accountAPI = createApi({
   reducerPath: 'accountAPI',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1:8000/api' }),
+  baseQuery: fetchBaseQuery({baseUrl: 'http://127.0.0.1:8000/api'}),
   endpoints: build => ({
     registration: build.mutation<TRegisterResponse, TRegisterInfo>({
       query: (data: TRegisterInfo) => ({
@@ -23,7 +23,7 @@ export const accountAPI = createApi({
     login: build.query<TAccountInfo, void>({
       query: () => ({
         url: '/users/me',
-        headers: { Authorization: `Token ${localStorage.getItem('auth_token')}` }
+        headers: {Authorization: `Token ${localStorage.getItem('auth_token')}`}
       })
     })
   })

@@ -13,26 +13,26 @@ import {userAPI} from "services/userService.ts";
 import styles from './styles.module.scss';
 
 export const Room: FC = () => {
-	const {id: idRoom} = useParams();
-	const location = useLocation()
-	const {users} = useAppSelector(state => state.userReducer)
-	const {cards} = useAppSelector(state => state.cardReducer)
+  const {id: idRoom} = useParams();
+  const location = useLocation()
+  const {users} = useAppSelector(state => state.userReducer)
+  const {cards} = useAppSelector(state => state.cardReducer)
 
-	const {refetch: refetchCards} = cardAPI.useFetchAllCardsQuery(parseInt(idRoom!));
-	const {refetch: refetchUsers} = userAPI.useFetchAllUsersQuery(parseInt(idRoom!));
+  const {refetch: refetchCards} = cardAPI.useFetchAllCardsQuery(parseInt(idRoom!));
+  const {refetch: refetchUsers} = userAPI.useFetchAllUsersQuery(parseInt(idRoom!));
 
-	useEffect(() => {
-		refetchUsers()
-		refetchCards()
-	}, [location.pathname]);
+  useEffect(() => {
+    refetchUsers()
+    refetchCards()
+  }, [location.pathname]);
 
-	return (
-		<PageWrapper>
-			<div className={styles.wrapper}>
-				{cards && users.map(user => <Point color={user.color} position={user.position} key={user.id}/>)}
-				<UserList users={users}/>
-				<Board/>
-			</div>
-		</PageWrapper>
-	);
+  return (
+    <PageWrapper>
+      <div className={styles.wrapper}>
+        {cards && users.map(user => <Point color={user.color} position={user.position} key={user.id}/>)}
+        <UserList users={users}/>
+        <Board/>
+      </div>
+    </PageWrapper>
+  );
 };
