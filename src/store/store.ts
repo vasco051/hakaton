@@ -1,4 +1,4 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
 
 import accountReducer from './reducers/account.slice';
 import diceReducer from './reducers/diceSlice';
@@ -6,11 +6,11 @@ import questionReducer from './reducers/question.slice';
 import userReducer from './reducers/user.slice';
 import cardReducer from './reducers/card.slice'
 
-import { questionAPI } from 'services/questionService';
-import { accountAPI } from 'services/accountService';
-import { userAPI } from 'services/userService';
-import { cardAPI } from 'services/cardService.ts';
-import { roomAPI } from 'services/roomService';
+import {questionAPI} from 'services/questionService';
+import {accountAPI} from 'services/accountService';
+import {userAPI} from 'services/userService';
+import {cardAPI} from 'services/cardService.ts';
+import {roomAPI} from 'services/roomService';
 
 
 const reducers = combineReducers({

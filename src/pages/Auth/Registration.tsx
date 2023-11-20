@@ -17,63 +17,63 @@ import {TRegisterInfo} from 'models/TUser';
 import styles from './styles.module.scss';
 
 const Registration: FC = () => {
-	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
-	const [makeRegistration, {isLoading,}] = accountAPI.useRegistrationMutation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [makeRegistration, {isLoading,}] = accountAPI.useRegistrationMutation();
 
-	const {
-		handleSubmit,
-		register,
-		formState: {
-			errors
-		}
-	} = useForm<TRegisterInfo>({
-		defaultValues: {
-			login: '',
-			password: ''
-		}
-	})
+  const {
+    handleSubmit,
+    register,
+    formState: {
+      errors
+    }
+  } = useForm<TRegisterInfo>({
+    defaultValues: {
+      login: '',
+      password: ''
+    }
+  })
 
-	const onSubmitForm: SubmitHandler<TRegisterInfo> = async data => {
-		const response = await makeRegistration(data);
+  const onSubmitForm: SubmitHandler<TRegisterInfo> = async data => {
+    const response = await makeRegistration(data);
 
-		if ('data' in response) {
-			const {data} = response
+    if ('data' in response) {
+      const {data} = response
 
-			localStorage.setItem('auth_token', data.key);
-			dispatch(setUser(data.user));
-			navigate(staticLinks.rooms);
-		}
-	}
+      localStorage.setItem('auth_token', data.key);
+      dispatch(setUser(data.user));
+      navigate(staticLinks.rooms);
+    }
+  }
 
-	return (
-		<PageWrapper className={styles.main}>
-			<div className={styles.wrapper}>
-				<form onSubmit={handleSubmit(onSubmitForm)} className={styles.form}>
-					<h1>Регистрация</h1>
+  return (
+    <PageWrapper className={styles.main}>
+      <div className={styles.wrapper}>
+        <form onSubmit={handleSubmit(onSubmitForm)} className={styles.form}>
+          <h1>Регистрация</h1>
 
-					<TextField
-						id='login'
-						label="Введите логин"
-						withError={!!errors.login}
-						{...register('login', {required: true})}
-					/>
+          <TextField
+            id='login'
+            label="Введите логин"
+            withError={!!errors.login}
+            {...register('login', {required: true})}
+          />
 
-					<TextField
-						id='password'
-						label="Введите пароль"
-						type='password'
-						withError={!!errors.password}
-						{...register('password', {required: true})}
-					/>
+          <TextField
+            id='password'
+            label="Введите пароль"
+            type='password'
+            withError={!!errors.password}
+            {...register('password', {required: true})}
+          />
 
-					<Button type="submit" disabled={isLoading}>Регистрация</Button>
+          <Button type="submit" disabled={isLoading}>Регистрация</Button>
 
-					<Link className={styles.redirect} to={staticLinks.authorization}>Авторизация</Link>
-				</form>
-			</div>
-		</PageWrapper>
-	);
+          <Link className={styles.redirect} to={staticLinks.authorization}>Авторизация</Link>
+        </form>
+      </div>
+    </PageWrapper>
+  );
 };
 
 export default Registration;

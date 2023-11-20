@@ -10,23 +10,23 @@ import IcDice6 from 'assets/icons/dice/dice6.svg';
 import styles from './styles.module.scss';
 
 interface IDiceProps {
-	values: [number, number]
+  values: [number, number]
 }
 
 export const Dice: FC<IDiceProps> = ({values: [value1, value2]}) => {
-	const diceEdges = [IcDice1, IcDice2, IcDice3, IcDice4, IcDice5, IcDice6];
+  const diceEdges = [IcDice1, IcDice2, IcDice3, IcDice4, IcDice5, IcDice6];
 
-	return (
-		<section className={styles.wrapper}>
-			<div className={styles.content}>
-				<div className={styles.cube}>
-					<img src={diceEdges[value1 - 1]} alt=""/>
-				</div>
+  return (
+    <section className={styles.wrapper}>
+      <div className={styles.content}>
+        <div className={styles.cube}>
+          <img src={diceEdges[value1 - 1]} alt=""/>
+        </div>
 
-				<div className={styles.cube}>
-					<img src={diceEdges[value2 - 1]} alt=""/>
-				</div>
-			</div>
-		</section>
-	);
+        <div className={styles.cube}>
+          <img src={diceEdges[value2 - 1]} alt=""/>
+        </div>
+      </div>
+    </section>
+  );
 };

@@ -1,18 +1,18 @@
-import { FC } from 'react';
+import {FC} from 'react';
 import clsx from 'clsx';
 
 import Portal from '../Portal';
-import { PopupProps } from '../types';
+import {PopupProps} from '../types';
 
 import styles from './Popup.module.scss';
 
 const Popup: FC<PopupProps> = ({
-  isOpen,
-  onClose,
-  children,
-  className = '',
-  ...props
-}) => {
+                                 isOpen,
+                                 onClose,
+                                 children,
+                                 className = '',
+                                 ...props
+                               }) => {
   if (isOpen) {
     document.documentElement.style.overflow = 'hidden';
   } else {
