@@ -1,0 +1,50 @@
+@import "src/assets/styles/templates";
+
+.header {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  transition: 0.4s transform ease-in-out;
+  transform: translateY(-100%);
+
+  &.visible {
+    transform: translateY(0%);
+  }
+}
+
+.headerWrapper {
+  @extend %wrapper;
+  @include flex-row-gap(20px);
+
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px 0;
+}
+
+.logoWrapper {
+  @include flex-row-gap(36px);
+  align-items: center;
+}
+
+.logo {
+  width: 46px;
+  height: 62px;
+}
+
+.logoText {
+  color: #FFF;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.link {
+  color: #FFF;
+  background: transparent;
+
+  font-size: 20px;
+  cursor: pointer;
+}

@@ -1,0 +1,129 @@
+@import "../../../../assets/styles/templates";
+
+.cell {
+  .costWrapper, .textWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+    background: #fff;
+  }
+
+  .cost {
+    color: black;
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .text {
+    color: #000;
+    font-size: 10px;
+    font-weight: 500;
+
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.corner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 115px;
+  height: 115px;
+
+  padding: 0 5px;
+  background: #fff;
+
+  .text {
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
+
+.left, .right {
+  .costWrapper, .textWrapper {
+    padding: 0 5px;
+  }
+}
+
+.top, .bottom {
+  .text {
+    transform: rotate(-90deg);
+  }
+}
+
+.top {
+  @include flex-col-gap(1px);
+
+  .costWrapper {
+    height: 35px;
+    width: 65px;
+  }
+
+  .textWrapper {
+    height: 115px;
+    width: 65px;
+  }
+}
+
+.right {
+  @include flex-row-gap(1px);
+  flex-direction: row-reverse;
+
+  .costWrapper {
+    width: 35px;
+    height: 65px;
+  }
+
+  .cost{
+    transform: rotate(90deg);
+  }
+
+  .textWrapper {
+    width: 115px;
+    height: 65px;
+  }
+}
+
+.bottom {
+  @include flex-col-gap(1px);
+  flex-direction: column-reverse;
+
+  .costWrapper {
+    height: 35px;
+    width: 65px;
+  }
+
+  .textWrapper {
+    height: 115px;
+    width: 65px;
+  }
+}
+
+.left {
+  @include flex-row-gap(1px);
+
+  .costWrapper {
+    width: 35px;
+    height: 65px;
+  }
+
+  .cost{
+    transform: rotate(-90deg);
+  }
+
+  .textWrapper {
+    width: 115px;
+    height: 65px;
+  }
+}

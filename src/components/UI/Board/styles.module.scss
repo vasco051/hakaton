@@ -1,0 +1,52 @@
+@import "src/assets/styles/templates.scss";
+
+.board {
+  @include flex-col-gap(1px);
+  justify-content: center;
+  align-items: center;
+}
+
+.top, .bottom {
+  @include flex-row-gap(1px);
+  justify-content: center;
+}
+
+.center {
+  @include flex-row-gap(1px);
+
+  .left, .right {
+    @include flex-col-gap(1px);
+
+  }
+  .left{
+    flex-direction: column-reverse;
+  }
+}
+
+.top {
+  align-items: flex-end;
+}
+
+.center {
+  display: flex;
+
+  .left {
+    align-items: flex-end;
+  }
+
+  .centerSlot {
+    width: 593px;
+    height: 593px;
+
+    background: #150050;
+  }
+
+  .right {
+    align-items: flex-start;
+  }
+}
+
+.bottom {
+  align-items: flex-start;
+  flex-direction: row-reverse;
+}

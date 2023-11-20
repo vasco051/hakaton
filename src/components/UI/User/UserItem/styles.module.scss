@@ -1,0 +1,49 @@
+@import "src/assets/styles/templates";
+
+.item {
+  @include flex-col-gap(5px);
+  justify-content: center;
+  align-items: center;
+
+  width: 280px;
+  padding: 20px 0;
+
+  background: #3F0071;
+  text-align: center;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 64px;
+  width: 64px;
+
+  border: 3px solid #FFF;
+  border-radius: 50%;
+
+  color: #FFF;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.name { // todo hide more text
+  color: #FFF;
+  font-size: 15px;
+}
+
+.price {
+  color: #FFF;
+  font-size: 25px;
+}
+
+.walking {
+  border: 3px solid #A066BF;
+  background: #150050;
+}

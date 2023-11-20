@@ -9,7 +9,7 @@ export type TQuestion = {
 }
 
 export type TCheckAnswerRequest = {
-  idRoom: number,
+  idRoom: number,  // todo bad name
   answer_id: number,
   card_id: number
 }

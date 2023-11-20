@@ -1,10 +1,15 @@
-@mixin flex-row-gap($px){
+@mixin flex-row-gap($px) {
   display: flex;
   gap: $px;
 }
 
-@mixin flex-col-gap($px){
+@mixin flex-col-gap($px) {
   display: flex;
   flex-direction: column;
   gap: $px;
+}
+
+%wrapper {
+  max-width: 1320px;
+  margin: 0 auto;
 }

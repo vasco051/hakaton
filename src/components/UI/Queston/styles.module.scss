@@ -1,0 +1,47 @@
+@import "src/assets/styles/templates";
+
+.wrapper {
+  @include flex-col-gap(40px);
+}
+
+.question {
+  color: #FFF;
+  text-align: center;
+  font-size: 20px;
+}
+
+.list {
+  @include flex-col-gap(15px);
+}
+
+.answer {
+  padding: 10px 16px;
+  width: 100%;
+
+  color: #FFF;
+  background: #150050;
+  border: 1px solid #FFF;
+
+  cursor: pointer;
+
+  transition: all 0.25s ease;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.isCurrentAnswer {
+  border: 2px solid #FFF;
+  cursor: auto;
+}
+
+.isTrueAnswer {
+  cursor: auto;
+  background: #54B435;
+}
+
+.isFalseAnswer {
+  cursor: auto;
+  background: #FF2D2D;
+}

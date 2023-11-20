@@ -1,9 +1,11 @@
 @import "src/assets/styles/templates";
 
-.room {
-  @include flex-row-gap(150px);
-  max-width: 1320px;
-  margin: 200px auto;
+.wrapper {
+  @extend %wrapper;
 
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+
+  padding: 40px 0;
 }

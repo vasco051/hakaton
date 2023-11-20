@@ -5,33 +5,33 @@ import { accountAPI } from '../../services/accountService';
 
 
 interface ISliceState {
-  user: TAccountInfo | null;
+  account: TAccountInfo | null;
 }
 
 const initialState: ISliceState = {
-  user: null
+	account: null
 };
 
 const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    setUser: (state, { payload: user }: PayloadAction<TAccountInfo>) => {
-      state.user = user;
+    setUser: (state, { payload: account }: PayloadAction<TAccountInfo>) => {
+      state.account = account;
     },
-    clearUser: state => {
-      state.user = null;
+    logout: state => {
+      state.account = null;
       localStorage.removeItem('auth_token')
     }
   },
   extraReducers: builder =>
-    builder.addMatcher(accountAPI.endpoints.login.matchFulfilled, (state, { payload: user }) => {
-      state.user = user;
+    builder.addMatcher(accountAPI.endpoints.login.matchFulfilled, (state, { payload: account }) => {
+      state.account = account;
     })
 });
 
 export default accountSlice.reducer;
 export const {
   setUser,
-  clearUser
+	logout
 } = accountSlice.actions;

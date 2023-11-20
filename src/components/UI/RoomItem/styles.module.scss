@@ -1,0 +1,23 @@
+@import "src/assets/styles/templates";
+
+.item {
+  @include flex-row-gap(20px);
+  justify-content: space-between;
+}
+
+.right{
+  @include flex-row-gap(40px);
+  align-items: center;
+}
+
+.title{
+  color: #FFF;
+  font-size: 40px;
+  font-weight: 500;
+}
+
+.countPlayers{
+  color: #A066BF;
+  font-size: 40px;
+  font-weight: 500;
+}
